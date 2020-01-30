@@ -2,6 +2,7 @@ img.logo {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  height: 30rem;
 }
 
 #button_1 {
@@ -12,3 +13,13 @@ img.logo {
   margin-left: 10rem;
   margin-right: 10rem;
 }
+
+#button_2 {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+

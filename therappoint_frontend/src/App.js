@@ -6,7 +6,13 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-     <img src={logo} alt="logo"/>
+     <img className="logo" src={logo} alt="logo"/>
+
+      <div id="button_1" className="ui green buttons">
+        <button className="ui massive button">Client</button>
+        <div className="or"></div>
+        <button className="ui massive button">Provider</button>
+      </div>
     </div>
   );
 }

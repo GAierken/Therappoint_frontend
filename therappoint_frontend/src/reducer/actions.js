@@ -11,9 +11,24 @@ export const userInputPage = (userInput) => {
     }
 }
 
-export const setToken =(token) => {
+export const setToken = (token, id) => {
     return {
         type: 'SET_TOKEN',
-        token: token
+        token: token,
+        id: id
+    }
+}
+
+
+export const setUser = (user) => {
+    return {
+        type: "SET_USER",
+        user: user
+    }
+}
+
+export const logOut = () => {
+    return {
+        type: "LOG_OUT"
     }
 }

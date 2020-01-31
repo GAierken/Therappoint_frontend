@@ -12,16 +12,12 @@ import {setToken} from './reducer/actions'
 
 
 
+
 import './App.css';
 
 class App extends React.Component {
   
-  // state = {
-  //   userClicked: false,
-  //   userChoice: "",
-  //   token: ""
-
-  // }
+  
   handleClick = () => {
     this.props.showNextButtons()
   }
@@ -34,7 +30,7 @@ class App extends React.Component {
   }
 
   fetchPost = (user) => {
-    console.log(user)
+   
     fetch('http://localhost:3000/users', {
       method: "POST",
       headers: {
@@ -54,8 +50,9 @@ class App extends React.Component {
           text: data.errors
         })
       } else {
-        console.log(data)
-        this.props.setToken(data.token)
+        this.props.setToken(data.token, data.user_id)
+      
+        
         
       }
     })
@@ -64,7 +61,7 @@ class App extends React.Component {
   
   
   render() {
-    console.log(this.props)
+  
   return (
     <div className="App">
      <img className="logo" src={logo} alt="logo"/>

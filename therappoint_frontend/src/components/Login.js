@@ -36,8 +36,9 @@ import {setToken} from '../reducer/actions'
                 text: data.errors
               })
            } else {
-               console.log(data)
-               this.props.setToken(data.token)
+               this.props.setToken(data.token, data.id)
+             
+               
            }
        })
        

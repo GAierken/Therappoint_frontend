@@ -1,7 +1,9 @@
 const initialState = {
     userClicked: false,
     userChoice: "",
-    token: ""
+    token: "",
+    id: "",
+    user: ""
 }
 
 const userReducer = (state = initialState, action) => {
@@ -20,9 +22,19 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: action.token,
+                id: action.id,
                 userChoice: ""
             }
-            
+        case 'SET_USER':
+            return {
+                ...state,
+                user: action.user
+
+            }
+        case 'LOG_OUT':
+            return {
+                ...initialState
+            }
         
     
         default:

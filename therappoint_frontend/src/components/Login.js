@@ -7,9 +7,15 @@ export default class Login extends React.Component{
        username: "",
        password: ""
    }
+
+   handleSubmit = (evt) => {
+       evt.preventDefault()
+       console.log('submit')
+   }
+   
     render(){
         return (
-           <form className="ui form">
+           <form onSubmit={this.handleSubmit} className="ui form">
                <label>Username:</label>
                <input type="text" name="username" value={this.state.username}></input>
                <label>Password:</label>

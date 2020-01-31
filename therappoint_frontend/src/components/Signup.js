@@ -8,9 +8,16 @@ export default class Signup extends React.Component{
 
    }
 
+
+   handleSubmit = (evt) => {
+    evt.preventDefault()
+    console.log('submit')
+}
+
+
     render(){
         return (
-           <form className="ui form">
+           <form onSubmit={this.handleSubmit} className="ui form">
                <label>Username:</label>
                <input type="text" name="username" value={this.state.username}></input>
                <label>Email:</label>

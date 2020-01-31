@@ -1,6 +1,6 @@
 import React from 'react';
 import './Form.css'
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 
 export default class Login extends React.Component{
@@ -18,6 +18,31 @@ export default class Login extends React.Component{
 
    handleSubmit = (evt) => {
        evt.preventDefault()
+       fetch("http://localhost:3000/login", {
+           method: 'POST',
+           headers: {
+               "content-type": "application/json",
+               "accept": "application/json"
+           },
+           body: JSON.stringify(this.state)
+       })
+       .then(r => r.json())
+       .then(data => {
+           if (data.errors) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: data.errors
+              })
+           } else {
+               console.log(data)
+           }
+       })
+       
+       
+       
+       
+       
        this.setState({
            username: "",
            password: ""

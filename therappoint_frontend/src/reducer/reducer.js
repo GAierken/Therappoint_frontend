@@ -19,7 +19,8 @@ const userReducer = (state = initialState, action) => {
         case 'SET_TOKEN':
             return {
                 ...state,
-                token: action.token
+                token: action.token,
+                userChoice: ""
             }
             
         

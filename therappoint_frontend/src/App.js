@@ -11,7 +11,8 @@ import './App.css';
 class App extends React.Component {
   
   state = {
-    userClicked: false
+    userClicked: false,
+    userChoice: ""
 
   }
   handleClick = () => {
@@ -24,17 +25,9 @@ class App extends React.Component {
    let buttonDiv01 = document.getElementById('button_2')
        buttonDiv01.style.display = "none"
 
-   
-   
-    switch (event.target.innerText) {
-      case "Sign Up":
-         return true
-      case "Login":
-         return false
-      default:
-        return null
-      
-    }
+       this.setState({
+         userChoice: event.target.innerText
+       })
   }
   
   
@@ -56,7 +49,8 @@ class App extends React.Component {
         <div className="or"></div>
         <button onClick={this.handleClick} className="ui massive button">Provider</button>
       </div>}
-     
+      {this.state.userChoice === "Sign Up"? <SignUp/> : null}
+      {this.state.userChoice === "Login"? <Login/> : null}
      
     </div>
   );

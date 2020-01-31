@@ -1,4 +1,6 @@
 import React from 'react';
+import './Form.css'
+// import Swal from 'sweetalert2'
 
 
 export default class Login extends React.Component{
@@ -24,7 +26,7 @@ export default class Login extends React.Component{
    
     render(){
         return (
-           <form onSubmit={this.handleSubmit} className="ui form">
+           <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>
                <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
                <label>Password:</label>

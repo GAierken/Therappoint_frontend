@@ -3,6 +3,7 @@ import logo from './logo.png'
 import Login from './components/Login'
 import SignUp from './components/Signup'
 import './App.css'
+import Swal from 'sweetalert2'
 
 
 
@@ -12,7 +13,8 @@ class App extends React.Component {
   
   state = {
     userClicked: false,
-    userChoice: ""
+    userChoice: "",
+    userloggin: false
 
   }
   handleClick = () => {
@@ -29,6 +31,33 @@ class App extends React.Component {
          userChoice: event.target.innerText
        })
   }
+
+  fetchPost = (user) => {
+    console.log(user)
+    fetch('http://localhost:3000/users', {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      body:  JSON.stringify(user)
+    })
+    .then(r => r.json())
+    .then(data => {
+      
+      if (data.errors) {
+        
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: data.errors
+        })
+      } else {
+        console.log(data)
+      }
+    })
+  }
+  
   
   
   render() {
@@ -49,7 +78,7 @@ class App extends React.Component {
         <div className="or"></div>
         <button onClick={this.handleClick} className="ui massive button">Provider</button>
       </div>}
-      {this.state.userChoice === "Sign Up"? <SignUp/> : null}
+      {this.state.userChoice === "Sign Up"? <SignUp createUser={this.fetchPost}/> : null}
       {this.state.userChoice === "Login"? <Login/> : null}
      
     </div>

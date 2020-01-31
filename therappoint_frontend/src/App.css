@@ -12,6 +12,7 @@ img.logo {
   justify-content: center;
   margin-left: 10rem;
   margin-right: 10rem;
+  font-family: 'Orbitron', sans-serif;
 }
 
 #button_2 {
@@ -21,5 +22,8 @@ img.logo {
   justify-content: center;
   margin-left: 10rem;
   margin-right: 10rem;
+  font-family: 'Orbitron', sans-serif;
+  
 }
+
 

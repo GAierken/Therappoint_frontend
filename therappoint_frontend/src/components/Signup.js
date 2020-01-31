@@ -1,4 +1,7 @@
 import React from 'react';
+import './Form.css'
+// import Swal from 'sweetalert2'
+
 
 export default class Signup extends React.Component{
    state = {
@@ -17,17 +20,22 @@ export default class Signup extends React.Component{
 
    handleSubmit = (evt) => {
     evt.preventDefault()
+    let user = this.state
+    this.props.createUser(user)
     this.setState({
         username: "",
-        password: ""
+        password: "",
+        email: ""
     })
+   
     
 }
 
 
     render(){
+      
         return (
-           <form onSubmit={this.handleSubmit} className="ui form">
+           <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>
                <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
                <label>Email:</label>

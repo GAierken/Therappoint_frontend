@@ -1,4 +1,6 @@
 import React from 'react';
+import './Form.css'
+// import Swal from 'sweetalert2'
 
 
 export default class Login extends React.Component{
@@ -7,13 +9,28 @@ export default class Login extends React.Component{
        username: "",
        password: ""
    }
+
+   handleChange = (evt) => {
+    this.setState({
+        [evt.target.name]: evt.target.value
+    })
+  }
+
+   handleSubmit = (evt) => {
+       evt.preventDefault()
+       this.setState({
+           username: "",
+           password: ""
+       })
+   }
+   
     render(){
         return (
-           <form className="ui form">
+           <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>
-               <input type="text" name="username" value={this.state.username}></input>
+               <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
                <label>Password:</label>
-               <input type="text" name="password" value={this.state.password}></input>
+               <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
                <input type="submit" className="ui teal button"></input>
            </form> 
         )

@@ -1,9 +1,10 @@
 import React from 'react';
 import './Form.css'
 import Swal from 'sweetalert2'
+import { connect } from 'react-redux';
+import {setToken} from '../reducer/actions'
 
-
-export default class Login extends React.Component{
+ class Login extends React.Component{
 
    state = {
        username: "",
@@ -36,6 +37,7 @@ export default class Login extends React.Component{
               })
            } else {
                console.log(data)
+               this.props.setToken(data.token)
            }
        })
        
@@ -61,3 +63,6 @@ export default class Login extends React.Component{
         )
     }
 }
+
+
+export default connect(null, {setToken})(Login)

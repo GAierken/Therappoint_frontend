@@ -3,6 +3,8 @@ import './Form.css'
 import Swal from 'sweetalert2'
 import { connect } from 'react-redux';
 import {setToken} from '../reducer/actions'
+import {authUser} from '../reducer/actions'
+// import {Link, useHistory} from 'react-router-dom'
 
  class Login extends React.Component{
 
@@ -39,35 +41,50 @@ import {setToken} from '../reducer/actions'
                
                localStorage.token = data.token
                localStorage.id = data.id
-
+               
                this.props.setToken(data.token, data.id)
+               this.props.authUser(data.token, data.id)
+               
+              
+
+               
+                this.setState({
+                username: "",
+                password: ""
+                })
              
                
            }
        })
+
        
        
-       
-       
-       
-       this.setState({
-           username: "",
-           password: ""
-       })
    }
    
     render(){
+        
         return (
-           <form onSubmit={this.handleSubmit} className="ui large form">
-               <label>Username:</label>
-               <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
-               <label>Password:</label>
-               <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
-               <input type="submit" className="ui teal button"></input>
-           </form> 
+            
+           
+              <form onSubmit={this.handleSubmit} className="ui large form">
+                   <label>Username:</label>
+                   <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
+                   <label>Password:</label>
+                   <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
+                   <input type="submit" className="ui teal button"></input>
+              </form> 
+     
+           
         )
     }
 }
 
 
-export default connect(null, {setToken})(Login)
+const mapStateToProps = (state) => {
+    return {
+        token: state.token
+    }
+}
+
+
+export default connect(mapStateToProps, {setToken, authUser})(Login)

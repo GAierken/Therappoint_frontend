@@ -36,6 +36,10 @@ import {setToken} from '../reducer/actions'
                 text: data.errors
               })
            } else {
+               
+               localStorage.token = data.token
+               localStorage.id = data.id
+
                this.props.setToken(data.token, data.id)
              
                

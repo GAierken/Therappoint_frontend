@@ -1,15 +1,3 @@
-export const showNextButtons = () => {
-    return {
-        type: 'CLICK_BUTTON'
-    }
-}
-
-export const userInputPage = (userInput) => {
-    return {
-        type: 'USER_INPUT',
-        input: userInput
-    }
-}
 
 export const setToken = (token, id) => {
     return {
@@ -27,8 +15,21 @@ export const setUser = (user) => {
     }
 }
 
-export const logOut = () => {
-    return {
-        type: "LOG_OUT"
+export const createUser = (user) => {
+    
+    return (dispatch) => {
+        fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': "application/json",
+                'accept': "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+        .then(r => r.json())
+        .then(newUser => {
+            dispatch(setToken(newUser.token, newUser.user_id))
+        })
     }
 }
+

@@ -45,7 +45,7 @@ class App extends React.Component {
       if (data.errors) {
         
         Swal.fire({
-          icon: 'error',
+          icon: 'warning',
           title: 'Oops...',
           text: data.errors
         })

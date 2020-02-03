@@ -6,10 +6,10 @@ import Profile from './components/Profile'
 import './App.css'
 import Swal from 'sweetalert2'
 import {connect} from 'react-redux'
-import {showNextButtons} from './reducer/actions'
-import {userInputPage} from './reducer/actions'
 import {setToken} from './reducer/actions'
-
+import { Route, Switch } from 'react-router'
+import Home from './Home'
+import SignLog from './SignLog'
 
 
 
@@ -18,16 +18,7 @@ import './App.css';
 class App extends React.Component {
   
   
-  handleClick = () => {
-    this.props.showNextButtons()
-  }
   
-  handleLoginClick = (event) => {
-   let buttonDiv01 = document.getElementById('button_2')
-       buttonDiv01.style.display = "none"
-
-       this.props.userInputPage(event.target.innerText)
-  }
 
   fetchPost = (user) => {
    
@@ -50,7 +41,11 @@ class App extends React.Component {
           text: data.errors
         })
       } else {
+        
+        localStorage.token = data.token
+        localStorage.id = data.user_id
         this.props.setToken(data.token, data.user_id)
+        
       
         
         
@@ -61,38 +56,30 @@ class App extends React.Component {
   
   
   render() {
-  
+     console.log(this.props.token)
   return (
     <div className="App">
      <img className="logo" src={logo} alt="logo"/>
      
-     {this.props.userClicked?
-     <div id="button_2" className="ui teal buttons">
-        <button onClick={(event) => this.handleLoginClick(event)} className="ui massive button">Sign Up</button>
-        <div className="or"></div>
-        <button onClick={(event) => this.handleLoginClick(event)} className="ui massive button">Login</button>
-      </div>
-      :
-      <div id="button_1" className="ui teal buttons">
-        <button onClick={this.handleClick} className="ui massive button">Client</button>
-        <div className="or"></div>
-        <button onClick={this.handleClick} className="ui massive button">Provider</button>
-      </div>}
-      {this.props.userChoice === "Sign Up"? <SignUp createUser={this.fetchPost}/> : null}
-      {this.props.userChoice === "Login"? <Login/> : null}
+     <Switch>
+       <Route exact path="/" component={ Home } />
+       <Route exact path="/client" component={ SignLog} />
+       <Route exact path="/provider" component={ SignLog } />
+       <Route exact path='/signup' render={() => <SignUp/>} />
+       <Route exact path='/login' render={() => <Login/>} />
+       <Route exact path='/profile' component={Profile}/>
+     </Switch>
      
-     {this.props.token !== ''? <Profile/> : null}
     </div>
-  );
+  )
   }
 }
 
 const mapStateToProps = (state) => {
+  
   return {
-    userClicked: state.userClicked,
-    userChoice: state.userChoice,
     token: state.token
   }
 }
 
-export default connect(mapStateToProps, {showNextButtons, userInputPage, setToken} )(App);
+export default connect(mapStateToProps, {setToken} )(App);

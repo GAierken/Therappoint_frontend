@@ -1,9 +1,10 @@
 import React from 'react';
 import './Form.css'
-// import Swal from 'sweetalert2'
+import { connect } from 'react-redux';
+import { createUser } from '../reducer/actions'
 
 
-export default class Signup extends React.Component{
+class Signup extends React.Component{
    state = {
        username: "",
        email: "",
@@ -21,7 +22,9 @@ export default class Signup extends React.Component{
    handleSubmit = (evt) => {
     evt.preventDefault()
     let user = this.state
+    
     this.props.createUser(user)
+
     this.setState({
         username: "",
         password: "",
@@ -33,7 +36,7 @@ export default class Signup extends React.Component{
 
 
     render(){
-      
+    
         return (
            <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>
@@ -47,3 +50,5 @@ export default class Signup extends React.Component{
         )
     }
 }
+
+export default connect(null, {createUser})(Signup)

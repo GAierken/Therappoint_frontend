@@ -8,15 +8,22 @@ class Profile extends React.Component {
 
  
  
+handleLogOutClick = () => {
+    
+    localStorage.removeItem("token")
+    localStorage.removeItem("id")
+    
+  
+}
 
     render(){
-      console.log(this.props.user)
+     console.log(this.props.user)
         return (
             
             <div className="info">
                 
                 <img src="https://i.pinimg.com/236x/56/e2/95/56e295e8a3b3837902a9bec1caa66ecd--photography-women-female-faces.jpg" alt="user" />
-                <Link to="/"><button className="ui teal button">Logout</button></Link>
+                <Link to="/"><button onClick={this.handleLogOutClick} className="ui teal button">Logout</button></Link>
             </div>
            
         )

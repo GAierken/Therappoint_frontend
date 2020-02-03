@@ -36,7 +36,7 @@ class Signup extends React.Component{
 
 
     render(){
-    
+    console.log(localStorage)
         return (
            <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>

@@ -6,7 +6,6 @@ import {setCategory} from './reducer/actions'
 class Home extends React.Component {
 
 handleClick = (evt) => {
-  console.log(evt.target.innerText)
   this.props.setCategory(evt.target.innerText)
 }
 

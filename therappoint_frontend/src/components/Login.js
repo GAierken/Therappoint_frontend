@@ -4,7 +4,8 @@ import Swal from 'sweetalert2'
 import { connect } from 'react-redux';
 import {setToken} from '../reducer/actions'
 import {authUser} from '../reducer/actions'
-// import {Link, useHistory} from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+
 
  class Login extends React.Component{
 
@@ -46,13 +47,14 @@ import {authUser} from '../reducer/actions'
                this.props.authUser(data.token, data.id)
                
               
-
+               
                
                 this.setState({
                 username: "",
                 password: ""
                 })
-             
+
+                
                
            }
        })
@@ -62,20 +64,20 @@ import {authUser} from '../reducer/actions'
    }
    
     render(){
-        
-        return (
-            
-           
-              <form onSubmit={this.handleSubmit} className="ui large form">
+        if (this.props.token !== "") {
+            return <Redirect to="/profile"></Redirect>
+        } else {
+            return(
+            <form onSubmit={this.handleSubmit} className="ui large form">
                    <label>Username:</label>
                    <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
                    <label>Password:</label>
                    <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
                    <input type="submit" className="ui teal button"></input>
-              </form> 
-     
+            </form> )
+        } 
            
-        )
+        
     }
 }
 

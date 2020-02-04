@@ -5,6 +5,7 @@ img.logo {
   height: 30rem;
 }
 
+
 #button_1 {
   height: 10rem;
   display: flex;
@@ -27,3 +28,11 @@ img.logo {
 }
 
 
+p {
+  text-align: center;
+  color: teal;
+  position: fixed; 
+  bottom: 0; 
+  width:100%;
+  font-family: 'Orbitron', sans-serif;
+}

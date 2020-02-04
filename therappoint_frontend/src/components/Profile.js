@@ -17,12 +17,12 @@ handleLogOutClick = () => {
 }
 
     render(){
-     
+     console.log(localStorage, this.props.user.img_url)
         return (
             
             <div className="info">
                 
-                <img src="https://i.pinimg.com/236x/56/e2/95/56e295e8a3b3837902a9bec1caa66ecd--photography-women-female-faces.jpg" alt="user" />
+                <img src={this.props.img_url} alt="user" />
                 <Link to="/"><button onClick={this.handleLogOutClick} className="ui teal button">Logout</button></Link>
             </div>
            

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import './Profile.css'
 import {Link} from 'react-router-dom'
-import { LogOut } from '../reducer/actions'
+import { LogOut, deleteUser } from '../reducer/actions'
 
 
 class Profile extends React.Component {
@@ -21,20 +21,19 @@ handleLogOutClick = () => {
 }
 
 handleClick = () => {
-    console.log('clicked')
     this.setState({
         clicked: !this.state.clicked
     })
 }
 
-editClick = () => {
-    console.log('cliecked')
-   
+
+handleDelete = () => {
+    console.log('delete')
+    this.props.deleteUser(this.props.user)
 }
 
 
     render(){
-    //  console.log(localStorage, this.props.user.img_url, this.props.user.username)
         return (
             this.state.clicked?
             <div className="ui raised link card">
@@ -44,7 +43,8 @@ editClick = () => {
                     <article className="header">Email: {this.props.user.email} </article>
                     <article className="header">Contact: {this.props.user.phone_number} </article> 
                  </div>
-                 <Link to="/edit"><button onClick={this.editClick} className='ui teal button'>Edit</button></Link>
+                 <Link to="/edit"><button className='ui teal button'>Edit</button></Link>
+                 <Link to="/"><button onClick={this.handleDelete} className='ui teal button' >Delete</button></Link>
             </div>
            :
            <div  className="ui raised link card">
@@ -68,4 +68,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {LogOut})(Profile)
+export default connect(mapStateToProps, {LogOut, deleteUser})(Profile)

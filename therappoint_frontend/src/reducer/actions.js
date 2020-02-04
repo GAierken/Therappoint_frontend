@@ -133,3 +133,20 @@ export const updateUser = (user) => {
         )
     }
 }
+
+
+export const deleteUser = (user) => {
+    return (dispatch) => {
+        fetch(`http://localhost:3000/users/${user.id}`,{
+            method: 'DELETE'
+        })
+        .then(r => r.json())
+        .then(data => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Sad to see you go!',
+                text: 'User is deleted!'
+              })
+        })
+    }
+}

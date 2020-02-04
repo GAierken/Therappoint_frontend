@@ -34,13 +34,15 @@ handleChange = (evt) => {
         evt.preventDefault()
         let user = this.state
          this.props.updateUser(user)
+
+
        
     }
     
     render(){
-        console.log(this.props.user.password_digest)
+        
         return (
-            <form onSubmit={this.handleSubmit} className="ui large form">
+        <form onSubmit={this.handleSubmit} className="ui large form">
             <label>Username</label>
             <input onChange={this.handleChange} type="text" name="username" placeholder={this.state.username} />
             <label>First Name</label>
@@ -60,7 +62,7 @@ handleChange = (evt) => {
             <label> Board Certified? </label>
             <input onChange={this.handleChange} type="checkbox" name="board_certified"  checked={this.state.board_certified}/> <br/>
             <input type="submit" className="ui teal button"/>
-            </form>
+        </form>
         )
     }
 }

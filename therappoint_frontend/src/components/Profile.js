@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import './Profile.css'
 import {Link} from 'react-router-dom'
+import { LogOut } from '../reducer/actions'
 
 
 class Profile extends React.Component {
@@ -13,6 +14,7 @@ handleLogOutClick = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("id")
     
+    this.props.LogOut()
   
 }
 
@@ -36,4 +38,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps, {LogOut})(Profile)

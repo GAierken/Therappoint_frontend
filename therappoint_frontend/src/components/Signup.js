@@ -2,6 +2,9 @@ import React from 'react';
 import './Form.css'
 import { connect } from 'react-redux';
 import { createUser } from '../reducer/actions'
+import {authUser} from '../reducer/actions'
+import { Redirect } from 'react-router';
+
 
 
 class Signup extends React.Component{
@@ -24,6 +27,7 @@ class Signup extends React.Component{
     let user = this.state
     
     this.props.createUser(user)
+    
 
     this.setState({
         username: "",
@@ -36,8 +40,12 @@ class Signup extends React.Component{
 
 
     render(){
-    console.log(localStorage)
+      
+        if(this.props.token !== ""){
+            return <Redirect to="/profile"></Redirect>
+        } else {
         return (
+    
            <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>
                <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
@@ -48,7 +56,17 @@ class Signup extends React.Component{
                <input type="submit" className="ui teal button"></input>
            </form> 
         )
+        }
     }
 }
 
-export default connect(null, {createUser})(Signup)
+
+
+const mapStateToProps = (state) => {
+    return {
+        token: state.token
+    }
+}
+
+
+export default connect(mapStateToProps, {createUser, authUser})(Signup)

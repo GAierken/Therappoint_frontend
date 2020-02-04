@@ -11,7 +11,8 @@ class Signup extends React.Component{
    state = {
        username: "",
        email: "",
-       password: ""
+       password: "",
+       specialty:""
 
    }
 
@@ -32,7 +33,8 @@ class Signup extends React.Component{
     this.setState({
         username: "",
         password: "",
-        email: ""
+        email: "",
+        specialty: ""
     })
    
     
@@ -45,7 +47,19 @@ class Signup extends React.Component{
             return <Redirect to="/profile"></Redirect>
         } else {
         return (
-    
+          this.props.category === 'Provider'?
+           <form onSubmit={this.handleSubmit} className="ui large form">
+               <label>Username:</label>
+               <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
+               <label>Email:</label>
+               <input onChange={this.handleChange} type="text" name="email" value={this.state.email}></input>
+               <label>Specialty:</label>
+               <input onChange={this.handleChange} type="text" name="specialty" value={this.state.specialty}></input>
+               <label>Password:</label>
+               <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
+               <input type="submit" className="ui teal button"></input>
+           </form> 
+           :
            <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>
                <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
@@ -55,6 +69,7 @@ class Signup extends React.Component{
                <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
                <input type="submit" className="ui teal button"></input>
            </form> 
+
         )
         }
     }
@@ -63,8 +78,10 @@ class Signup extends React.Component{
 
 
 const mapStateToProps = (state) => {
+ 
     return {
-        token: state.token
+        token: state.token,
+        category: state.category
     }
 }
 

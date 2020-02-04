@@ -22,7 +22,13 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...initialState
             }
-    
+        case 'SET_CATEGORY':
+           
+            return {
+             ...state,
+             category: action.category
+            }
+           
         default:
            return state
     }

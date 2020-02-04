@@ -18,6 +18,10 @@ const userReducer = (state = initialState, action) => {
                 user: action.user
 
             }
+        case 'LOG_OUT':
+            return {
+                ...initialState
+            }
     
         default:
            return state

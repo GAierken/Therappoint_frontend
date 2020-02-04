@@ -61,3 +61,9 @@ export const authUser = (token, id) => {
         })
     }
 }
+
+export const LogOut = () => {
+    return {
+        type: "LOG_OUT"
+    }
+}

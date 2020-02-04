@@ -47,6 +47,40 @@ export const createUser = (user) => {
     }
 }
 
+export const loginUser = (user) => {
+    return (dispatch) => {
+        fetch("http://localhost:3000/login", {
+           method: 'POST',
+           headers: {
+               "content-type": "application/json",
+               "accept": "application/json"
+           },
+           body: JSON.stringify(user)
+       })
+       .then(r => r.json())
+       .then(data => {
+           if (data.errors) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: data.errors
+              })
+           } else {
+               
+               localStorage.token = data.token
+               localStorage.id = data.id
+               
+               dispatch(setToken(data.token, data.id))
+               dispatch(authUser(data.token, data.id))
+                
+               
+           }
+
+          
+       })
+    }
+}
+
 
 export const authUser = (token, id) => {
     return (dispatch) => {
@@ -65,5 +99,37 @@ export const authUser = (token, id) => {
 export const LogOut = () => {
     return {
         type: "LOG_OUT"
+    }
+}
+
+export const updateUser = (user) => {
+    return (dispatch) => {
+        fetch(`http://localhost:3000/users/${user.id}`, {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            body:  JSON.stringify(user)
+        })
+        .then(r => r.json())
+        .then(data => 
+            {
+                if (data.errors) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: data.errors
+                      })
+                } else {
+                    localStorage.token = data.token
+                    localStorage.id = data.user_id
+                   
+                    dispatch(setUser(user))
+                }
+                
+            }
+            
+        )
     }
 }

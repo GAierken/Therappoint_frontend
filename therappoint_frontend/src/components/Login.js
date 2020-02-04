@@ -1,10 +1,10 @@
 import React from 'react';
 import './Form.css'
-import Swal from 'sweetalert2'
 import { connect } from 'react-redux';
 import {setToken} from '../reducer/actions'
 import {authUser} from '../reducer/actions'
 import { Redirect } from 'react-router-dom';
+import { loginUser } from '../reducer/actions'
 
 
  class Login extends React.Component{
@@ -22,44 +22,12 @@ import { Redirect } from 'react-router-dom';
 
    handleSubmit = (evt) => {
        evt.preventDefault()
-       fetch("http://localhost:3000/login", {
-           method: 'POST',
-           headers: {
-               "content-type": "application/json",
-               "accept": "application/json"
-           },
-           body: JSON.stringify(this.state)
-       })
-       .then(r => r.json())
-       .then(data => {
-           if (data.errors) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: data.errors
-              })
-           } else {
-               
-               localStorage.token = data.token
-               localStorage.id = data.id
-               
-               this.props.setToken(data.token, data.id)
-               this.props.authUser(data.token, data.id)
-               
-              
-               
-               
-                this.setState({
-                username: "",
-                password: ""
-                })
-
-                
-               
-           }
-       })
-
-       
+       let user = this.state
+      this.props.loginUser(user)
+       this.setState({
+        username: "",
+        password: ""
+        })
        
    }
    
@@ -89,4 +57,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {setToken, authUser})(Login)
+export default connect(mapStateToProps, {setToken, authUser, loginUser})(Login)

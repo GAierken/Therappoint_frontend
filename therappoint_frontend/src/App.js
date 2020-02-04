@@ -24,7 +24,7 @@ class App extends React.Component {
   
   
   render() {
-  console.log(this.props.token)
+ 
   return (
     <div className="App">
      <img className="logo" src={logo} alt="logo"/>
@@ -38,6 +38,7 @@ class App extends React.Component {
        <Route exact path='/profile' render={() => <Profile/>}/>
      </Switch>
      
+     <p>Therappoint® licensed by Guligena Aierken © 2020</p>
     </div>
   )
   }

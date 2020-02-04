@@ -40,6 +40,7 @@ export const createUser = (user) => {
                 localStorage.id = data.user_id
                
                 dispatch(setToken(data.token, data.user_id))
+                dispatch(authUser(data.token, data.user_id))
             }
             
         })

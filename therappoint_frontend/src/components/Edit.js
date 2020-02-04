@@ -34,7 +34,8 @@ handleChange = (evt) => {
         evt.preventDefault()
         let user = this.state
          this.props.updateUser(user)
-
+    
+         
 
        
     }

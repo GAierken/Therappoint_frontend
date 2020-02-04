@@ -1,5 +1,13 @@
 import Swal from 'sweetalert2'
 
+export const setCategory = (category) => {
+    return {
+        type: "SET_CATEGORY",
+        category: category
+    }
+    
+}
+
 export const setToken = (token, id) => {
     return {
         type: 'SET_TOKEN',

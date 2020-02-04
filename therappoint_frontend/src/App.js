@@ -39,7 +39,7 @@ class App extends React.Component {
        <Route exact path='/edit' render={() => <Edit/>}/>
      </Switch>
      
-     <p>Therappoint® licensed by Guligena Aierken © 2020</p>
+     <p>Therappoint® created by Guligena Aierken © 2020</p>
     </div>
   )
   }

@@ -4,7 +4,7 @@ import Login from './components/Login'
 import SignUp from './components/Signup'
 import Profile from './components/Profile'
 import './App.css'
-
+import Edit from './components/Edit'
 import {connect} from 'react-redux'
 import {setToken} from './reducer/actions'
 import { Route, Switch } from 'react-router'
@@ -24,7 +24,7 @@ class App extends React.Component {
   
   
   render() {
- 
+    //  console.log('token', this.props.token, 'user', this.props.user)
   return (
     <div className="App">
      <img className="logo" src={logo} alt="logo"/>
@@ -36,6 +36,7 @@ class App extends React.Component {
        <Route exact path='/signup' render={() => <SignUp/>} />
        <Route exact path='/login' render={() => <Login/>} />
        <Route exact path='/profile' render={() => <Profile/>}/>
+       <Route exact path='/edit' render={() => <Edit/>}/>
      </Switch>
      
      <p>Therappoint® licensed by Guligena Aierken © 2020</p>

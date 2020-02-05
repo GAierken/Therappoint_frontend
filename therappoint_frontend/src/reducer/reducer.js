@@ -33,6 +33,18 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 updated: action.updated
             }
+
+        case 'DATE':
+            return {
+                ...state,
+                date: action.date
+            }
+
+        case 'PICKED_USER':
+            return {
+                ...state,
+                pickedId: action.pickedId
+            }
         default:
            return state
     }

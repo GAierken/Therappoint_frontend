@@ -157,6 +157,8 @@ export const deleteUser = (user) => {
         })
         .then(r => r.json())
         .then(data => {
+           localStorage.removeItem('token')
+           localStorage.removeItem('id')
             Swal.fire({
                 icon: 'success',
                 title: 'Sad to see you go!',
@@ -164,4 +166,41 @@ export const deleteUser = (user) => {
               })
         })
     }
+
+
 }
+
+
+export const setDate = (date) => {
+    return {
+        type: 'DATE',
+        date: date
+    }
+}
+
+export const setPickedUserId = (id) => {
+    return {
+        type: 'PICKED_USER',
+        pickedId: id
+    }
+}
+
+export const createAppointment = (date, userId01, userId02) => {
+    return (dispatch) => {
+        fetch('http://localhost:3000/appointments', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            body: JSON.stringify({
+                client_id: userId01,
+                provider_id: userId02,
+                appoint_date: date
+            })
+        })
+        .then(r => r.json())
+        .then(console.log)
+    }
+}
+

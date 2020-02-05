@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux';
 import './Profile.css'
 import {Link} from 'react-router-dom'
-import { LogOut, deleteUser } from '../reducer/actions'
+import { LogOut, deleteUser, setPickedUserId, createAppointment } from '../reducer/actions'
 import uuid from 'uuid'
-
+import Calendar from './Calendar'
 
 class Profile extends React.Component {
 
@@ -41,13 +41,24 @@ appointmentLi = () => {
 
 providersImg = () => {
     return this.props.user.providers.map((provider) => {
-        return <img key={uuid()} className="ui image" src={provider.img_url} alt={provider.last_name} />
+    return <img onClick={this.pickProv} key={uuid()} data-id={provider.id} className="ui image" src={provider.img_url} alt={provider.last_name} />
     }
     )
 }
 
+confirmAppo = () => {
+    console.log(this.props.date, this.props.pickedId, this.props.user.id)
+    this.props.createAppointment(this.props.date, this.props.user.id, this.props.pickedId)
+}
+
+pickProv = (evt) => {
+    this.props.setPickedUserId(evt.target.dataset.id)
+    
+}
+
+
     render(){
-    //   console.log(this.props.user.username)
+        console.log(this.props.date, this.props.pickedId)
         return (
             
             <div className="ui three column grid">
@@ -86,7 +97,8 @@ providersImg = () => {
                         Providers:
                         {this.props.user.providers? this.providersImg():null}
                         </div>
-                        <article>appointment making calendar</article>
+                        <Calendar />
+                        <button onClick={this.confirmAppo}>Schedule</button>
                     </div>
                 </div>
 
@@ -115,8 +127,10 @@ providersImg = () => {
 
 const mapStateToProps = (state) => {
     return {
-       user: state.user
+       user: state.user,
+       date: state.date,
+       pickedId: state.pickedId
     }
 }
 
-export default connect(mapStateToProps, {LogOut, deleteUser})(Profile)
+export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment})(Profile)

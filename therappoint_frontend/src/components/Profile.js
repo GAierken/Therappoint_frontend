@@ -40,7 +40,14 @@ appointmentLi = () => {
 }
 
 providersImg = () => {
-    return this.props.user.providers.map((provider) => {
+    const providers = [...this.props.user.providers]
+
+    const uniqueProviders = Array.from(new Set(providers.map(p => p.id))).map((id) => {
+        return providers.find((p) => {
+            return p.id === id})})
+
+    console.log(uniqueProviders)
+    return uniqueProviders.map((provider) => {
     return <img onClick={this.pickProv} key={uuid()} data-id={provider.id} className="ui image" src={provider.img_url} alt={provider.last_name} />
     }
     )

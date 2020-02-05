@@ -42,8 +42,8 @@ class Signup extends React.Component{
 
 
     render(){
-      
-        if(this.props.token !== ""){
+ 
+        if(this.props.token){
             return <Redirect to="/profile"></Redirect>
         } else {
         return (

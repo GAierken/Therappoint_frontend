@@ -11,11 +11,11 @@ class Profile extends React.Component {
  state={
      clicked: false
  }
- 
+
+
 handleLogOutClick = () => {
     
-    localStorage.removeItem("token")
-    localStorage.removeItem("id")
+    localStorage.clear()
     
     this.props.LogOut()
   
@@ -40,14 +40,21 @@ appointmentLi = () => {
 }
 
 providersImg = () => {
-    return this.props.user.providers.map((provider) => {
+    const providers = [...this.props.user.providers]
+
+    const uniqueProviders = Array.from(new Set(providers.map(p => p.id))).map((id) => {
+        return providers.find((p) => {
+            return p.id === id})})
+
+    
+    return uniqueProviders.map((provider) => {
     return <img onClick={this.pickProv} key={uuid()} data-id={provider.id} className="ui image" src={provider.img_url} alt={provider.last_name} />
     }
     )
 }
 
 confirmAppo = () => {
-    console.log(this.props.date, this.props.pickedId, this.props.user.id)
+    
     this.props.createAppointment(this.props.date, this.props.user.id, this.props.pickedId)
 }
 
@@ -58,7 +65,7 @@ pickProv = (evt) => {
 
 
     render(){
-        console.log(this.props.date, this.props.pickedId)
+        
         return (
             
             <div className="ui three column grid">

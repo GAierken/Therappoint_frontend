@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {updateUser}from '../reducer/actions'
+import {Link} from 'react-router-dom'
 
 
 class Edit extends React.Component{
@@ -41,7 +42,7 @@ handleChange = (evt) => {
     }
     
     render(){
-        console.log(this.props.user.specialty)
+       
         return (
         this.props.user.specialty?
         <form onSubmit={this.handleSubmit} className="ui large form">
@@ -63,7 +64,7 @@ handleChange = (evt) => {
             <input onChange={this.handleChange} type="text" name="specialty" placeholder={this.state.specialty}/>
             <label> Board Certified? </label>
             <input onChange={this.handleChange} type="checkbox" name="board_certified"  checked={this.state.board_certified}/> <br/>
-            <input type="submit" className="ui teal button"/>
+            <Link to="/profile"><input type="submit" className="ui teal button"/></Link>
         </form>
         :
         <form onSubmit={this.handleSubmit} className="ui large form">
@@ -81,7 +82,7 @@ handleChange = (evt) => {
             <input onChange={this.handleChange} type="text" name="phone_number" placeholder={this.state.phone_number}/>
             <label>Image</label>
             <input onChange={this.handleChange} type="text" name="img_url" placeholder={this.state.img_url}/>
-            <input type="submit" className="ui teal button"/>
+            <Link to="/profile"><input type="submit" className="ui teal button"/></Link>
         </form>
         )
     }

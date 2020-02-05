@@ -6,7 +6,7 @@ import Profile from './components/Profile'
 import './App.css'
 import Edit from './components/Edit'
 import {connect} from 'react-redux'
-import {setToken} from './reducer/actions'
+import {authUser} from './reducer/actions'
 import { Route, Switch } from 'react-router'
 import Home from './Home'
 import SignLog from './SignLog'
@@ -17,14 +17,17 @@ import './App.css';
 
 class App extends React.Component {
   
-  
-  
+  componentDidMount(){
+    if (localStorage.token) {
+      this.props.authUser(localStorage.token, localStorage.id)
+    }
+  }
 
  
   
   
   render() {
-
+     console.log('user', this.props.user, 'token', localStorage.token)
   return (
     <div className="App">
      <img className="logo" src={logo} alt="logo"/>
@@ -49,8 +52,9 @@ const mapStateToProps = (state) => {
   
   return {
     token: state.token,
+    id: state.id,
     user: state.user
   }
 }
 
-export default connect(mapStateToProps, {setToken} )(App);
+export default connect(mapStateToProps, {authUser} )(App);

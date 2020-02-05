@@ -32,7 +32,9 @@ import { loginUser } from '../reducer/actions'
    }
    
     render(){
-        if (this.props.token !== "") {
+        
+        if (this.props.token !=="") {
+            debugger
             return <Redirect to="/profile"></Redirect>
         } else {
             return(

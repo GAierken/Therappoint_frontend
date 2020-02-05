@@ -47,7 +47,7 @@ providersImg = () => {
 }
 
     render(){
-      
+    //   console.log(this.props.user.username)
         return (
             
             <div className="ui three column grid">

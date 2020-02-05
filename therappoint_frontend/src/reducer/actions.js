@@ -110,7 +110,15 @@ export const LogOut = () => {
     }
 }
 
+export const updateSuccess = () => {
+     return {
+         type: 'UPDATE_SUCCESS',
+         updated: true
+     }
+}
+
 export const updateUser = (user) => {
+  
     return (dispatch) => {
         fetch(`http://localhost:3000/users/${user.id}`, {
             method: "PATCH",
@@ -130,10 +138,9 @@ export const updateUser = (user) => {
                         text: data.errors
                       })
                 } else {
-                    localStorage.token = data.token
-                    localStorage.id = data.user_id
                    
-                    dispatch(setUser(user))
+                   dispatch(setUser(data))
+                 
                 }
                 
             }

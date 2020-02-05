@@ -27,7 +27,7 @@ class App extends React.Component {
   
   
   render() {
-     console.log('user', this.props.user, 'token', localStorage.token)
+     
   return (
     <div className="App">
      <img className="logo" src={logo} alt="logo"/>

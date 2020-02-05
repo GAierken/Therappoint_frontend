@@ -76,9 +76,8 @@ export const loginUser = (user) => {
                
                localStorage.token = data.token
                localStorage.id = data.id
+               dispatch(setToken(data.token, data.id))
                
-               dispatch(setUser(data.token, data.id))
-               dispatch(authUser(localStorage.token, localStorage.id))
                 
                
            }

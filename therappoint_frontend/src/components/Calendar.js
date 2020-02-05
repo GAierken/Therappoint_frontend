@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 class Calendar extends React.Component {
   state = {
     startDate: ''
-    // new Date()
+   
   };
  
   handleChange = date => {

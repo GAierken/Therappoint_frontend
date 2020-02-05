@@ -14,8 +14,7 @@ class Profile extends React.Component {
  
 handleLogOutClick = () => {
     
-    localStorage.removeItem("token")
-    localStorage.removeItem("id")
+    localStorage.clear()
     
     this.props.LogOut()
   
@@ -34,19 +33,29 @@ handleDelete = () => {
 
 appointmentLi = () => {
     return this.props.user.provider_appointments.map((appoint) => {
-    return <li key={appoint.id}>{appoint.appoint_date}</li>
+    return ( <ul key={uuid()}>
+              <li key={uuid()}>{appoint.appoint_date}</li>
+              <button key={uuid()} onClick={this.handleReschedule}>Reschedule</button> 
+              <button key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</button>
+            </ul>)
     }
     )
 }
 
 providersImg = () => {
-    const providers = [...this.props.user.providers]
 
+
+   const renewFirst = JSON.parse(localStorage.providers.split("},")[0].substring(1)+"}")
+   const renewSecond = JSON.parse(localStorage.providers.split("},")[localStorage.providers.split("},").length-1].substring(0, localStorage.providers.split("},")[localStorage.providers.split("},").length-1].length-1))
+   const stringArr = localStorage.providers.split("},").splice(1, localStorage.providers.split("},").length-2)
+   const providers = stringArr.map(e => JSON.parse(e+"}"))
+         providers.push(renewFirst, renewSecond)
+         console.table(providers)
+    // avoid array duplication///
     const uniqueProviders = Array.from(new Set(providers.map(p => p.id))).map((id) => {
         return providers.find((p) => {
             return p.id === id})})
 
-    console.log(uniqueProviders)
     return uniqueProviders.map((provider) => {
     return <img onClick={this.pickProv} key={uuid()} data-id={provider.id} className="ui image" src={provider.img_url} alt={provider.last_name} />
     }
@@ -54,7 +63,6 @@ providersImg = () => {
 }
 
 confirmAppo = () => {
-    console.log(this.props.date, this.props.pickedId, this.props.user.id)
     this.props.createAppointment(this.props.date, this.props.user.id, this.props.pickedId)
 }
 
@@ -63,9 +71,20 @@ pickProv = (evt) => {
     
 }
 
+handleAppoDelete = (evt) => {
+    console.log('deleted', evt.target.dataset.id)
+    
+}
+
+handleReschedule = () => {
+    console.log('reschedule')
+}
+
+
+
 
     render(){
-        console.log(this.props.date, this.props.pickedId)
+       
         return (
             
             <div className="ui three column grid">
@@ -75,10 +94,10 @@ pickProv = (evt) => {
                     {this.state.clicked?
                         <div className="ui raised link card">
                             <div onClick={this.handleClick} className="content">
-                                <article className="header">Full name: {this.props.user.first_name} {this.props.user.last_name}</article> 
-                                <article className="header">Address: {this.props.user.address} </article>
-                                <article className="header">Email: {this.props.user.email} </article>
-                                <article className="header">Contact: {this.props.user.phone_number} </article> 
+                                <article className="header">Full name: {localStorage.first_name} {localStorage.last_name}</article> 
+                                <article className="header">Address: {localStorage.address} </article>
+                                <article className="header">Email: {localStorage.email} </article>
+                                <article className="header">Contact: {localStorage.phone_number} </article> 
                             </div>
                             <Link to="/edit"><button className='ui teal button'>Edit</button></Link>
                             <Link to="/"><button onClick={this.handleDelete} className='ui teal button' >Delete</button></Link>
@@ -86,10 +105,10 @@ pickProv = (evt) => {
                     :
                         <div  onClick={this.handleClick} className="ui raised link card">
                             <div  className="image">
-                            <img src={this.props.user.img_url} alt={this.props.user.username}/>
+                            <img src={localStorage.img_url} alt={localStorage.username}/>
                             </div>
                             <div className="content">
-                            <article className="header">{this.props.user.username}</article>
+                            <article className="header">{localStorage.username}</article>
                             </div>
                             <Link to="/"><button onClick={this.handleLogOutClick} className="ui teal button">Logout</button></Link>
                         </div>

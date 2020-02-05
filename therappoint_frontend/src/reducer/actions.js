@@ -100,6 +100,23 @@ export const authUser = (token, id) => {
         .then(r => r.json())
         .then(data => {
             dispatch(setUser(data))
+            localStorage.first_name = data.first_name
+            localStorage.last_name = data.last_name
+            localStorage.username = data.username
+            localStorage.address = data.address
+            localStorage.email = data.email
+            localStorage.phone_number = data.phone_number
+            localStorage.img_url = data.img_url
+            localStorage.specialty = data.specialty
+            localStorage.board_certified = data.board_certified
+            
+            if (localStorage.specialty === "null") {
+                        localStorage.providers_appointments = JSON.stringify(data.provider_appointments)
+                        localStorage.providers = JSON.stringify(data.providers)
+            }else{
+                        localStorage.client_appointments = JSON.stringify(data.client_appointments)
+                        localStorage.clients = JSON.stringify(data.clients)
+            }
         })
     }
 }
@@ -138,7 +155,6 @@ export const updateUser = (user) => {
                         text: data.errors
                       })
                 } else {
-                   
                    dispatch(setUser(data))
                  
                 }
@@ -157,8 +173,7 @@ export const deleteUser = (user) => {
         })
         .then(r => r.json())
         .then(data => {
-           localStorage.removeItem('token')
-           localStorage.removeItem('id')
+           localStorage.clear()
             Swal.fire({
                 icon: 'success',
                 title: 'Sad to see you go!',
@@ -200,7 +215,12 @@ export const createAppointment = (date, userId01, userId02) => {
             })
         })
         .then(r => r.json())
-        .then(console.log)
+        .then(data => {
+            console.log(data)
+           
+        })
     }
 }
+
+
 

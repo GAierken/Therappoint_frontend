@@ -29,6 +29,8 @@ handleClick = () => {
 
 
 handleDelete = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('id')
     this.props.deleteUser(this.props.user)
 }
 

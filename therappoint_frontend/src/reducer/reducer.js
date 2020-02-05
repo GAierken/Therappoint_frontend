@@ -28,7 +28,11 @@ const userReducer = (state = initialState, action) => {
              ...state,
              category: action.category
             }
-           
+        case 'UPDATE_SUCCESS':
+            return {
+                ...state,
+                updated: action.updated
+            }
         default:
            return state
     }

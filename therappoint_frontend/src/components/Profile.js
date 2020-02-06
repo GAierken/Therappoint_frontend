@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import './Profile.css'
 import {Link} from 'react-router-dom'
-import { LogOut, deleteUser, setPickedUserId, createAppointment } from '../reducer/actions'
+import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment } from '../reducer/actions'
 import uuid from 'uuid'
 import Calendar from './Calendar'
 
@@ -38,7 +38,7 @@ appointmentLi = () => {
     return this.props.user.provider_appointments.map((appoint) => {
     return (<ul key={uuid()}>
                 <li key={uuid()}>{appoint.appoint_date}</li>
-                <button key={uuid()} onClick={this.handleReschedule}>Reschedule</button> 
+                <button key={uuid()} data-id={appoint.id} onClick={this.handleReschedule}>Reschedule</button> 
                 <button key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</button>
             </ul>)
     }
@@ -71,11 +71,11 @@ pickProv = (evt) => {
 
 handleAppoDelete = (evt) => {
     console.log('deleted', evt.target.dataset.id)
-    
+    this.props.deleteAppointment(evt.target.dataset.id)
 }
 
-handleReschedule = () => {
-    console.log('reschedule')
+handleReschedule = (evt) => {
+    console.log('reschedule', evt.target.dataset.id)
 }
 
 
@@ -155,4 +155,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment})(Profile)
+export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment})(Profile)

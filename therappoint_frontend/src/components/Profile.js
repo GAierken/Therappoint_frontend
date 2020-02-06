@@ -2,14 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux';
 import './Profile.css'
 import {Link} from 'react-router-dom'
-import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment } from '../reducer/actions'
+import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment } from '../reducer/actions'
 import uuid from 'uuid'
 import Calendar from './Calendar'
 
 class Profile extends React.Component {
 
  state={
-     clicked: false
+     clicked: false,
+     rescheduleClicked: false,
+     rescheduleAppoinId: ''
  }
 
 
@@ -38,7 +40,7 @@ appointmentLi = () => {
     return this.props.user.provider_appointments.map((appoint) => {
     return (<ul key={uuid()}>
                 <li key={uuid()}>{appoint.appoint_date}</li>
-                <button key={uuid()} data-id={appoint.id} onClick={this.handleReschedule}>Reschedule</button> 
+                <button key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</button> 
                 <button key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</button>
             </ul>)
     }
@@ -70,12 +72,21 @@ pickProv = (evt) => {
 }
 
 handleAppoDelete = (evt) => {
-    console.log('deleted', evt.target.dataset.id)
     this.props.deleteAppointment(evt.target.dataset.id)
 }
 
-handleReschedule = (evt) => {
-    console.log('reschedule', evt.target.dataset.id)
+handleSetReschedule = (evt) => {
+   
+    this.setState({
+        ...this.state,
+        rescheduleClicked: true,
+        rescheduleAppoinId: evt.target.dataset.id
+    })
+}
+
+updateAppointdate = (evt) => {
+    
+    this.props.updateAppointment(this.state.rescheduleAppoinId, this.props.date)
 }
 
 
@@ -129,7 +140,8 @@ handleReschedule = (evt) => {
                     <div className="ui segment">
                         <ul>
                            appointments history and following:
-                         {this.props.user.provider_appointments? this.appointmentLi():null}
+                         {this.props.user.provider_appointments? this.appointmentLi(): <li>No appointment.</li>}
+                         {this.state.rescheduleClicked? <li><Calendar/><button onClick={this.updateAppointdate}>confirm</button></li>: null}
 
                         </ul>
                     </div>
@@ -155,4 +167,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment})(Profile)
+export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment})(Profile)

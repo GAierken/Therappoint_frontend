@@ -222,3 +222,20 @@ export const deleteAppointment = (id) => {
         })
     }
 }
+
+export const updateAppointment = (id, date) => {
+    return (dispatch) => {
+        fetch(`http://localhost:3000/appointments/${id}`, {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            body: JSON.stringify({
+                appoint_date: date
+            })
+        })
+        .then(r => r.json())
+        .then(console.log)
+    }
+}

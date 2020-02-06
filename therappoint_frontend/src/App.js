@@ -10,10 +10,11 @@ import {authUser} from './reducer/actions'
 import { Route, Switch } from 'react-router'
 import Home from './Home'
 import SignLog from './SignLog'
-
+import Portfolio from './components/Portfolio'
 
 
 import './App.css';
+import PersonalPage from './components/Portfolio';
 
 class App extends React.Component {
   
@@ -40,6 +41,7 @@ class App extends React.Component {
        <Route exact path='/login' render={() => <Login/>} />
        <Route exact path='/profile' render={() => <Profile/>}/>
        <Route exact path='/edit' render={() => <Edit/>}/>
+       <Route exact path='/portfolio' render={() => <Portfolio/>}/>
      </Switch>
      
      <p>Therappoint® created by Guligena Aierken © 2020</p>

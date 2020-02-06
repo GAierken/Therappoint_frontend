@@ -36,7 +36,11 @@ handleDelete = () => {
 
 appointmentLi = () => {
     return this.props.user.provider_appointments.map((appoint) => {
-    return <li key={appoint.id}>{appoint.appoint_date}</li>
+    return (<ul key={uuid()}>
+                <li key={uuid()}>{appoint.appoint_date}</li>
+                <button key={uuid()} onClick={this.handleReschedule}>Reschedule</button> 
+                <button key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</button>
+            </ul>)
     }
     )
 }
@@ -63,6 +67,15 @@ confirmAppo = () => {
 pickProv = (evt) => {
     this.props.setPickedUserId(evt.target.dataset.id)
     
+}
+
+handleAppoDelete = (evt) => {
+    console.log('deleted', evt.target.dataset.id)
+    
+}
+
+handleReschedule = () => {
+    console.log('reschedule')
 }
 
 

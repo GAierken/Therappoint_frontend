@@ -95,7 +95,7 @@ updateAppointdate = () => {
 }
 
 handleSearch = (evt) => {
-    console.log(evt.target.value)
+   console.log(evt.target.value)
 }
 
 
@@ -103,7 +103,7 @@ handleSearch = (evt) => {
         
         return (
            <div className="top div">
-           
+           {/* search bar */}
             <div className="ui search">
                 <div className="ui icon input">
                     <input onChange={this.handleSearch} className="prompt" type="text" placeholder="Enter name"/>

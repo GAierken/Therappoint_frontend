@@ -104,13 +104,23 @@ handleSearch = (evt) => {
         return (
            <div className="top div">
            {/* search bar */}
+           {this.props.user.specialty?
             <div className="ui search">
                 <div className="ui icon input">
-                    <input onChange={this.handleSearch} className="prompt" type="text" placeholder="Enter name"/>
+                    <input onChange={this.handleSearch} className="prompt" type="text" placeholder="Find your client"/>
                     <i className="search icon"></i>
                 </div>
                 <div className="results"></div>
             </div>
+            :
+            <div className="ui search">
+                <div className="ui icon input">
+                    <input onChange={this.handleSearch} className="prompt" type="text" placeholder="Find your "/>
+                    <i className="search icon"></i>
+                </div>
+                <div className="results"></div>
+            </div>
+            }
             <div className="ui three column grid">
                 {/* beginning personal info */}
                 <div className="column">

@@ -23,6 +23,8 @@ class Signup extends React.Component{
    }
    
 
+   
+
    handleSubmit = (evt) => {
     evt.preventDefault()
     let user = this.state
@@ -42,7 +44,6 @@ class Signup extends React.Component{
 
 
     render(){
- 
         if(this.props.token){
             return <Redirect to="/profile"></Redirect>
         } else {
@@ -54,7 +55,14 @@ class Signup extends React.Component{
                <label>Email:</label>
                <input onChange={this.handleChange} type="text" name="email" value={this.state.email}></input>
                <label>Specialty:</label>
-               <input onChange={this.handleChange} type="text" name="specialty" value={this.state.specialty}></input>
+                <select name="specialty" onChange={this.handleChange} className="ui dropdown">
+                    <option value=""></option>
+                    <option value="physical therapy">physical therapy</option>
+                    <option value="occupational therapy">occupational therapy</option>
+                    <option value="speech therap">speech therapy</option>
+                    <option value='psychological therapy'>psychological therapy</option>
+                    <option value="ABA therapy">ABA therapy</option>
+                </select>
                <label>Password:</label>
                <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
                <input type="submit" className="ui teal button"></input>

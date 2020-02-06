@@ -11,10 +11,7 @@ import { Route, Switch } from 'react-router'
 import Home from './Home'
 import SignLog from './SignLog'
 import Portfolio from './components/Portfolio'
-
-
 import './App.css';
-import PersonalPage from './components/Portfolio';
 
 class App extends React.Component {
   

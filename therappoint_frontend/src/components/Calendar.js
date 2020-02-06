@@ -16,6 +16,8 @@ class Calendar extends React.Component {
       startDate: date
     });
     this.props.setDate(date)
+
+    
   };
  
 

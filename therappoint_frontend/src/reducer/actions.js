@@ -205,3 +205,18 @@ export const createAppointment = (date, userId01, userId02) => {
     }
 }
 
+
+export const deleteAppointment = (id) => {
+    return (dispatch) => {
+        fetch(`http://localhost:3000/appointments/${id}`, {
+            method: "DELETE"
+        })
+        .then(r => r.json())
+        .then(data => {
+            Swal.fire({
+                icon: 'success',
+                text: 'Appointment is canceled!'
+              })
+        })
+    }
+}

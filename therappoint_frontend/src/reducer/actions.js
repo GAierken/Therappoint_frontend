@@ -165,6 +165,8 @@ export const deleteUser = (user) => {
                 title: 'Sad to see you go!',
                 text: 'User is deleted!'
               })
+              dispatch(setToken(null, null))
+              dispatch(authUser(null, null))
         })
     }
 

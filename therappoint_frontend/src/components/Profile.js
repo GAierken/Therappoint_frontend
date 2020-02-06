@@ -94,11 +94,23 @@ updateAppointdate = () => {
     })
 }
 
+handleSearch = (evt) => {
+    console.log(evt.target.value)
+}
+
 
     render(){
         
         return (
-            
+           <div className="top div">
+           
+            <div className="ui search">
+                <div className="ui icon input">
+                    <input onChange={this.handleSearch} className="prompt" type="text" placeholder="Enter name"/>
+                    <i className="search icon"></i>
+                </div>
+                <div className="results"></div>
+            </div>
             <div className="ui three column grid">
                 {/* beginning personal info */}
                 <div className="column">
@@ -151,6 +163,7 @@ updateAppointdate = () => {
                         </ul>
                     </div>
                 </div>
+            </div>
             </div>
             
             

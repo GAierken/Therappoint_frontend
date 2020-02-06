@@ -203,7 +203,13 @@ export const createAppointment = (date, userId01, userId02) => {
             })
         })
         .then(r => r.json())
-        .then(console.log)
+        .then(data=> {
+            Swal.fire({
+                icon: 'success',
+                title: `Appointment for ${data.appoint_date} is scheduled!`
+              })
+              dispatch(authUser(localStorage.token, localStorage.id))
+        })
     }
 }
 
@@ -219,6 +225,7 @@ export const deleteAppointment = (id) => {
                 icon: 'success',
                 text: 'Appointment is canceled!'
               })
+              dispatch(authUser(localStorage.token, localStorage.id))
         })
     }
 }
@@ -236,6 +243,12 @@ export const updateAppointment = (id, date) => {
             })
         })
         .then(r => r.json())
-        .then(console.log)
+        .then(data => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Schedule is updated!'
+              })
+              dispatch(authUser(localStorage.token, localStorage.id))
+        })
     }
 }

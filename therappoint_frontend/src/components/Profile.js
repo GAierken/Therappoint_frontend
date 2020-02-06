@@ -88,6 +88,10 @@ handleSetReschedule = (evt) => {
 updateAppointdate = (evt) => {
     
     this.props.updateAppointment(this.state.rescheduleAppoinId, this.props.date)
+    this.setState({
+        ...this.state,
+        rescheduleClicked: false
+    })
 }
 
 

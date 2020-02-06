@@ -56,7 +56,7 @@ providersImg = () => {
 
     
     return uniqueProviders.map((provider) => {
-    return <img onClick={this.pickProv} key={uuid()} data-id={provider.id} className="ui image" src={provider.img_url} alt={provider.last_name} />
+    return <img className="ui circular image" onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name} />
     }
     )
 }
@@ -85,7 +85,7 @@ handleSetReschedule = (evt) => {
     })
 }
 
-updateAppointdate = (evt) => {
+updateAppointdate = () => {
     
     this.props.updateAppointment(this.state.rescheduleAppoinId, this.props.date)
     this.setState({
@@ -131,7 +131,7 @@ updateAppointdate = (evt) => {
                 {/* beginning of calender appointment making column */}
                 <div className="column">
                     <div className="ui segment">
-                        <div className="ui tiny images">
+                        <div className="ui tiny circular images">
                         Providers:
                         {this.props.user.providers? this.providersImg():null}
                         </div>

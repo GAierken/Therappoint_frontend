@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import './Profile.css'
 import {Link} from 'react-router-dom'
-import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment } from '../reducer/actions'
+import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser } from '../reducer/actions'
 import uuid from 'uuid'
 import Calendar from './Calendar'
 
@@ -64,6 +64,7 @@ providersImg = () => {
 confirmAppo = () => {
     
     this.props.createAppointment(this.props.date, this.props.user.id, this.props.pickedId)
+   
 }
 
 pickProv = (evt) => {
@@ -167,4 +168,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment})(Profile)
+export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser})(Profile)

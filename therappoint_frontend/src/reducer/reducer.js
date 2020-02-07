@@ -50,6 +50,19 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 pickedId: action.pickedId
             }
+
+        case 'SEARCH_SOURCE':
+            return {
+                ...state,
+                source: action.source
+            }
+
+        case 'SEARCHED_USER':
+            return{
+                ...state,
+                searchedUser: action.searchedUser
+            }
+
         default:
            return state
     }

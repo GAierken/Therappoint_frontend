@@ -109,6 +109,21 @@ providerAppoLi = () => {
         )
 }
 
+clientsImg = () => {
+    const clients = [...this.props.user.clients]
+
+    const uniqueClients = Array.from(new Set(clients.map(c => c.id))).map((id) => {
+        return clients.find((c) => {
+            return c.id === id})})
+
+    
+    return uniqueClients.map((client) => {
+    return <img className="ui circular image" onClick={this.pickProv} key={uuid()} data-id={client.id} src={client.img_url} alt={client.last_name} />
+    }
+    )
+}
+
+
     render(){
         
         return (
@@ -164,8 +179,8 @@ providerAppoLi = () => {
                 <div className="column">
                     <div className="ui segment">
                         <div className="ui tiny circular images">
-                        Providers:
                         {this.props.user.providers? this.providersImg():null}
+                        {this.props.user.clients? this.clientsImg():null}
                         </div>
                         <Calendar />
                         <button onClick={this.confirmAppo}>Schedule</button>

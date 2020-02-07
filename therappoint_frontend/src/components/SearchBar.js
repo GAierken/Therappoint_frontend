@@ -4,6 +4,7 @@ import {Search} from 'semantic-ui-react'
 import {newSource, setSearchedUser} from '../reducer/actions'
 import { Redirect } from 'react-router'
 
+
 class SearchBar extends React.Component {
 
   state = {
@@ -47,7 +48,7 @@ class SearchBar extends React.Component {
 
           this.props.setSearchedUser(searchedUser)
          
-
+          localStorage.searched_id = searchedUser.id
           localStorage.searched_name = searchedUser.first_name + " " + searchedUser.last_name
           localStorage.searched_img = searchedUser.img_url
           localStorage.searched_address = searchedUser.address
@@ -55,6 +56,7 @@ class SearchBar extends React.Component {
           localStorage.searched_board_certified = searchedUser.board_certified
           localStorage.searched_email = searchedUser.searched_email
           localStorage.searched_phone_number = searchedUser.searched_phone_number
+
       this.setState(
           {...this.state, resultSelect: !this.state.resultSelect}
       )

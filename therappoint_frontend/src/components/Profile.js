@@ -98,6 +98,16 @@ handleSearch = (evt) => {
    console.log(evt.target.value)
 }
 
+providerAppoLi = () => {
+    return this.props.user.client_appointments.map((appoint) => {
+        return (<ul key={uuid()}>
+                    <li key={uuid()}>{appoint.appoint_date}</li>
+                    <button key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</button> 
+                    <button key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</button>
+                </ul>)
+        }
+        )
+}
 
     render(){
         
@@ -115,7 +125,7 @@ handleSearch = (evt) => {
             :
             <div className="ui search">
                 <div className="ui icon input">
-                    <input onChange={this.handleSearch} className="prompt" type="text" placeholder="Find your "/>
+                    <input onChange={this.handleSearch} className="prompt" type="text" placeholder="Find your provider"/>
                     <i className="search icon"></i>
                 </div>
                 <div className="results"></div>
@@ -167,7 +177,8 @@ handleSearch = (evt) => {
                     <div className="ui segment">
                         <ul>
                            appointments history and following:
-                         {this.props.user.provider_appointments? this.appointmentLi(): <li>No appointment.</li>}
+                         {this.props.user.provider_appointments? this.appointmentLi(): null}
+                         {this.props.user.client_appointments? this.providerAppoLi(): null}
                          {this.state.rescheduleClicked? <li><Calendar/><button onClick={this.updateAppointdate}>confirm</button></li>: null}
 
                         </ul>

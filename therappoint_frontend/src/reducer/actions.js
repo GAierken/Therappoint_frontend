@@ -260,3 +260,30 @@ export const updateAppointment = (id, date) => {
         })
     }
 }
+
+
+export const setSource = (source) => {
+    return {
+        type: 'SEARCH_SOURCE',
+        source: source
+    }
+}
+
+
+export const newSource = () => {
+    return (dispatch) => {
+        fetch('http://localhost:3000/users')
+        .then(r => r.json())
+        .then(data => 
+            dispatch(setSource(data)))
+    }
+}
+
+
+export const setSearchedUser = (user) => {
+    return {
+        type: "SEARCHED_USER",
+        searchedUser: user
+    }
+}
+

@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser, changeUpdateState } from '../reducer/actions'
 import uuid from 'uuid'
 import Calendar from './Calendar'
+import SearcBar from './SearchBar'
 
 class Profile extends React.Component {
 
@@ -134,23 +135,7 @@ changeUpdatedState = () => {
         return (
            <div className="top div">
            {/* search bar */}
-           {this.props.user.specialty?
-            <div className="ui search">
-                <div className="ui icon input">
-                    <input onChange={this.handleSearch} className="prompt" type="text" placeholder="Find your client"/>
-                    <i className="search icon"></i>
-                </div>
-                <div className="results"></div>
-            </div>
-            :
-            <div className="ui search">
-                <div className="ui icon input">
-                    <input onChange={this.handleSearch} className="prompt" type="text" placeholder="Find your provider"/>
-                    <i className="search icon"></i>
-                </div>
-                <div className="results"></div>
-            </div>
-            }
+           <SearcBar/>
             <div className="ui three column grid">
                 {/* beginning personal info */}
                 <div className="column">

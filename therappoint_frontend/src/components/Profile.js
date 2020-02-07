@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import './Profile.css'
 import {Link} from 'react-router-dom'
-import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser } from '../reducer/actions'
+import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser, changeUpdateState } from '../reducer/actions'
 import uuid from 'uuid'
 import Calendar from './Calendar'
 
@@ -62,8 +62,10 @@ providersImg = () => {
 }
 
 confirmAppo = () => {
-    
-    this.props.createAppointment(this.props.date, this.props.user.id, this.props.pickedId)
+    if(this.props.user.specialty){
+    this.props.createAppointment(this.props.date, this.props.pickedId, this.props.user.id)}
+    else{
+        this.props.createAppointment(this.props.date, this.props.user.id, this.props.pickedId)}    
    
 }
 
@@ -111,16 +113,19 @@ providerAppoLi = () => {
 
 clientsImg = () => {
     const clients = [...this.props.user.clients]
-
     const uniqueClients = Array.from(new Set(clients.map(c => c.id))).map((id) => {
         return clients.find((c) => {
             return c.id === id})})
-
+    
     
     return uniqueClients.map((client) => {
     return <img className="ui circular image" onClick={this.pickProv} key={uuid()} data-id={client.id} src={client.img_url} alt={client.last_name} />
     }
     )
+}
+
+changeUpdatedState = () => {
+    this.props.changeUpdateState()
 }
 
 
@@ -158,7 +163,7 @@ clientsImg = () => {
                                 <article className="header">Email: {this.props.user.email} </article>
                                 <article className="header">Contact: {this.props.user.phone_number} </article> 
                             </div>
-                            <Link to="/edit"><button className='ui teal button'>Edit</button></Link>
+                            <Link to="/edit"><button onClick={this.changeUpdatedState} className='ui teal button'>Edit</button></Link>
                             <Link to="/"><button onClick={this.handleDelete} className='ui teal button' >Delete</button></Link>
                         </div>
                     :
@@ -217,8 +222,9 @@ const mapStateToProps = (state) => {
     return {
        user: state.user,
        date: state.date,
-       pickedId: state.pickedId
+       pickedId: state.pickedId,
+       updated: state.updated
     }
 }
 
-export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser})(Profile)
+export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser, changeUpdateState})(Profile)

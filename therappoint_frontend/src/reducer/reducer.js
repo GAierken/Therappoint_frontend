@@ -33,7 +33,12 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 updated: action.updated
             }
-
+        case 'CHANGE_UPDATE_STATE':
+            return {
+                ...state,
+                updated: action.updated
+            }
+        
         case 'DATE':
             return {
                 ...state,

@@ -118,6 +118,14 @@ export const updateSuccess = () => {
      }
 }
 
+export const changeUpdateState = () => {
+    return {
+        type: 'CHANGE_UPDATE_STATE',
+        updated: false
+    }
+}
+
+
 export const updateUser = (user) => {
   
     return (dispatch) => {

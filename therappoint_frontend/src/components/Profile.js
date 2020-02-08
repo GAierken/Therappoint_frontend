@@ -97,9 +97,7 @@ updateAppointdate = () => {
     })
 }
 
-handleSearch = (evt) => {
-   console.log(evt.target.value)
-}
+
 
 providerAppoLi = () => {
     return this.props.user.client_appointments.map((appoint) => {

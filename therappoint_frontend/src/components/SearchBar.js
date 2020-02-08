@@ -22,23 +22,46 @@ class SearchBar extends React.Component {
           ...this.state,
           value: evt.target.value.toLowerCase()
       })
-      
-         
-     
  
         if(this.props.source){
-        const newSource = this.props.source.map(object => {
-            return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase(), ...object}
-        })
+            // different user would have different search result
+            if(this.props.user.specialty){
+                const newSource = this.props.source.map(object => {
+                    return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase(), ...object}
+                }).filter((obj) => {
+                    return !obj.specialty
+                }
+                )
+                const results = newSource.filter((obj) => {
+                     return obj.title.includes(this.state.value)
+                    
+                })
+
+                this.setState({
+                    ...this.state,
+                    results: results
+                })}else{
+                    const newSource = this.props.source.map(object => {
+                        return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase(), ...object}
+                    }).filter((obj) => {
+                        return obj.specialty
+                    }
+                    )
+    
+                    const results = newSource.filter((obj) => {
+                         return obj.title.includes(this.state.value)
+                        
+                    })
+    
+                    this.setState({
+                        ...this.state,
+                        results: results
+                    })
+
+                }
+            }
         
-        const results = newSource.filter((obj) => {
-             return obj.title.includes(this.state.value)
-            
-        })
-        this.setState({
-            ...this.state,
-            results: results
-        })}
+        
 }
 
   handleResultSelect = (evt) => {
@@ -65,7 +88,7 @@ class SearchBar extends React.Component {
 
 
 render(){
-  
+     
     if(this.state.resultSelect === true) {
         return <Redirect to="/portfolio"></Redirect>
     }else{

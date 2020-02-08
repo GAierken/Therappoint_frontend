@@ -13,6 +13,10 @@ import SignLog from './SignLog'
 import Portfolio from './components/Portfolio'
 import './App.css';
 
+
+
+
+
 class App extends React.Component {
   
   componentDidMount(){
@@ -25,7 +29,7 @@ class App extends React.Component {
   
   
   render() {
-     
+    
   return (
     <div className="App">
      <img className="logo" src={logo} alt="logo"/>

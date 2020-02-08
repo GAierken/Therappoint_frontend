@@ -4,6 +4,7 @@ import { Grid, Image, Segment, Button } from 'semantic-ui-react'
 import Calendar from './Calendar'
 import { Redirect } from 'react-router'
 import {createAppointment} from '../reducer/actions'
+import Map from './MapContainer'
 
 
 class Portfolio extends React.Component {
@@ -61,6 +62,7 @@ handleScheduleClick = () => {
                  <Segment>Email: {localStorage.searched_email}</Segment>
                  <Segment>Contact number: {localStorage.searched_phone_number}</Segment>
                  <Segment>Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
+                 <Segment><Map/></Segment>
                  <Segment><Calendar/><Button onClick={this.handleScheduleClick} className="ui teal button">Schedule</Button><Button onClick={this.handleBackClick}className="ui teal button">Back</Button></Segment>
               </Segment.Group>
               :
@@ -69,6 +71,7 @@ handleScheduleClick = () => {
                  <Segment>Email: {localStorage.searched_email}</Segment>
                  <Segment>Contact number: {localStorage.searched_phone_number}</Segment>
                  <Segment>Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
+                 <Segment><Map/></Segment>
                  <Segment><Calendar/><Button onClick={this.handleScheduleClick} className="ui teal button">Schedule</Button><Button onClick={this.handleBackClick}className="ui teal button">Back</Button></Segment>
               </Segment.Group>}
             </Grid.Column>

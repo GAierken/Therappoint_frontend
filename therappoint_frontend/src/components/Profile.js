@@ -6,6 +6,8 @@ import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointme
 import uuid from 'uuid'
 import Calendar from './Calendar'
 import SearcBar from './SearchBar'
+import MapContainer from './MapContainer'
+import { Segment, Button } from 'semantic-ui-react';
 
 class Profile extends React.Component {
 
@@ -139,16 +141,17 @@ changeUpdatedState = () => {
                 <div className="column">
                     <div className="ui segment">
                     {this.state.clicked?
-                        <div className="ui raised link card">
-                            <div onClick={this.handleClick} className="content">
-                                <article className="header">Full name: {this.props.user.first_name} {this.props.user.last_name}</article> 
-                                <article className="header">Address: {this.props.user.address} </article>
-                                <article className="header">Email: {this.props.user.email} </article>
-                                <article className="header">Contact: {this.props.user.phone_number} </article> 
-                            </div>
-                            <Link to="/edit"><button onClick={this.changeUpdatedState} className='ui teal button'>Edit</button></Link>
-                            <Link to="/"><button onClick={this.handleDelete} className='ui teal button' >Delete</button></Link>
-                        </div>
+                        <Segment.Group raised>
+                            <Segment onClick={this.handleClick} className="content">
+                                <Segment className="header">Full name: {this.props.user.first_name} {this.props.user.last_name}</Segment> 
+                                <Segment className="header">Address: {this.props.user.address} </Segment>
+                                <Segment className="header">Email: {this.props.user.email} </Segment>
+                                <Segment className="header">Contact: {this.props.user.phone_number} </Segment> 
+                                <div><MapContainer/></div>
+                            </Segment>
+                            <Link to="/edit"><Button onClick={this.changeUpdatedState} className='ui teal button'>Edit</Button></Link>
+                            <Link to="/"><Button onClick={this.handleDelete} className='ui teal button' >Delete</Button></Link>
+                        </Segment.Group>
                     :
                         <div  onClick={this.handleClick} className="ui raised link card">
                             <div  className="image">

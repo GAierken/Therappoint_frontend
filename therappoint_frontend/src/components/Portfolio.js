@@ -13,6 +13,7 @@ class Portfolio extends React.Component {
     }
 
 handleBackClick = () => {
+    localStorage.removeItem('searched_id')
     localStorage.removeItem('searched_name')
     localStorage.removeItem('searched_img')
     localStorage.removeItem('searched_address')
@@ -20,7 +21,7 @@ handleBackClick = () => {
     localStorage.removeItem('searched_board_certified')
     localStorage.removeItem('searched_email')
     localStorage.removeItem('searched_phone_number')
-    localStorage.removeItem('searched_id')
+    
   
     this.setState({
         backClicked: !this.state.backClicked
@@ -42,7 +43,7 @@ handleScheduleClick = () => {
 
 
     render(){
-        
+        console.log(this.props.searchedUser.specialty)
         if(this.state.backClicked){
             return <Redirect to="/profile"></Redirect>
         }else{
@@ -52,6 +53,7 @@ handleScheduleClick = () => {
               <Image src={localStorage.searched_img}/>
             </Grid.Column>
             <Grid.Column width={9}>
+            {this.props.searchedUser.specialty?
               <Segment.Group raised>
                  <Segment>Name: {localStorage.searched_name}</Segment>
                  <Segment>Specialty: {localStorage.searched_specialty}</Segment>
@@ -61,6 +63,14 @@ handleScheduleClick = () => {
                  <Segment>Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
                  <Segment><Calendar/><Button onClick={this.handleScheduleClick} className="ui teal button">Schedule</Button><Button onClick={this.handleBackClick}className="ui teal button">Back</Button></Segment>
               </Segment.Group>
+              :
+              <Segment.Group raised>
+                 <Segment>Name: {localStorage.searched_name}</Segment>
+                 <Segment>Email: {localStorage.searched_email}</Segment>
+                 <Segment>Contact number: {localStorage.searched_phone_number}</Segment>
+                 <Segment>Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
+                 <Segment><Calendar/><Button onClick={this.handleScheduleClick} className="ui teal button">Schedule</Button><Button onClick={this.handleBackClick}className="ui teal button">Back</Button></Segment>
+              </Segment.Group>}
             </Grid.Column>
           </Grid>
         )}

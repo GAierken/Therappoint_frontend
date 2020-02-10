@@ -44,7 +44,6 @@ handleScheduleClick = () => {
 
 
     render(){
-        console.log(this.props.searchedUser.specialty)
         if(this.state.backClicked){
             return <Redirect to="/profile"></Redirect>
         }else{
@@ -54,16 +53,16 @@ handleScheduleClick = () => {
               <Image src={localStorage.searched_img}/>
             </Grid.Column>
             <Grid.Column width={9}>
-            {this.props.searchedUser.specialty?
+            {localStorage.searched_specialty?
               <Segment.Group raised>
                  <Segment>Name: {localStorage.searched_name}</Segment>
                  <Segment>Specialty: {localStorage.searched_specialty}</Segment>
                  <Segment>Board Certified? {localStorage.searched_board_certified? "Yes" : "No"}</Segment>
                  <Segment>Email: {localStorage.searched_email}</Segment>
                  <Segment>Contact number: {localStorage.searched_phone_number}</Segment>
-                 <Segment>Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
-                 <Segment><Map/></Segment>
-                 <Segment><Calendar/><Button onClick={this.handleScheduleClick} className="ui teal button">Schedule</Button><Button onClick={this.handleBackClick}className="ui teal button">Back</Button></Segment>
+                 <Segment>Please select a date: <Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="teal">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui teal button">Back</Button></Segment>
+                 <Segment>Address: {localStorage.searched_address? localStorage.searched_address : "n/a"}</Segment>
+                 <Grid><Map/></Grid>
               </Segment.Group>
               :
               <Segment.Group raised>
@@ -72,7 +71,7 @@ handleScheduleClick = () => {
                  <Segment>Contact number: {localStorage.searched_phone_number}</Segment>
                  <Segment>Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
                  <Segment><Map/></Segment>
-                 <Segment><Calendar/><Button onClick={this.handleScheduleClick} className="ui teal button">Schedule</Button><Button onClick={this.handleBackClick}className="ui teal button">Back</Button></Segment>
+                 <Segment>Please select a date:<Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="ui teal button">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui teal button">Back</Button></Segment>
               </Segment.Group>}
             </Grid.Column>
           </Grid>

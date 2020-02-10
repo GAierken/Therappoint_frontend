@@ -12,6 +12,7 @@ import Home from './Home'
 import SignLog from './SignLog'
 import Portfolio from './components/Portfolio'
 import './App.css';
+import Swal from 'sweetalert2'
 
 
 
@@ -29,7 +30,7 @@ class App extends React.Component {
   
   
   render() {
-    
+  
   return (
     <div className="App">
      <img className="logo" src={logo} alt="logo"/>
@@ -40,9 +41,42 @@ class App extends React.Component {
        <Route exact path="/provider" component={ SignLog } />
        <Route exact path='/signup' render={() => <SignUp/>} />
        <Route exact path='/login' render={() => <Login/>} />
-       <Route exact path='/profile' render={() => <Profile/>}/>
-       <Route exact path='/edit' render={() => <Edit/>}/>
-       <Route exact path='/portfolio' render={() => <Portfolio/>}/>
+       <Route exact path='/profile' render={() => {
+         
+         if (localStorage.token) {
+          return <Profile/>
+         } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Please signup or login!'
+          })
+          return <Home/>
+         } 
+         }}/>
+       <Route exact path='/edit' render={() => {
+         
+         if (localStorage.token) {
+          return <Edit/>
+         } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Please signup or login!'
+          })
+          return <Home/>
+         } 
+         }}/>
+       <Route exact path='/portfolio' render={() => {
+         
+         if (localStorage.token) {
+          return <Portfolio/>
+         } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Please signup or login!'
+          })
+          return <Home/>
+         } 
+         }}/>
      </Switch>
      
      <p>Therappoint® created by Guligena Aierken © 2020</p>

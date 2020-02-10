@@ -7,6 +7,7 @@ import { Redirect } from 'react-router';
 
 
 
+
 class Signup extends React.Component{
    state = {
        username: "",
@@ -45,37 +46,39 @@ class Signup extends React.Component{
 
     render(){
        
+       
         if(this.props.token){
             return <Redirect to="/profile"></Redirect>
         } else {
         return (
-          this.props.category === 'Provider'?
+          localStorage.category === 'Provider'?
            <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>
-               <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
+               <input onChange={this.handleChange} type="text" name="username" value={this.state.username} placeholder="Please enter your username"></input>
                <label>Email:</label>
-               <input onChange={this.handleChange} type="text" name="email" value={this.state.email}></input>
+               <input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="Please enter your Email"></input>
                <label>Specialty:</label>
                 <select name="specialty" onChange={this.handleChange} className="ui dropdown">
-                    <option value=""></option>
+                    <option value="" disabled selected>Please select your specialty</option>
                     <option value="physical therapy">physical therapy</option>
                     <option value="occupational therapy">occupational therapy</option>
                     <option value="speech therap">speech therapy</option>
                     <option value='psychological therapy'>psychological therapy</option>
                     <option value="ABA therapy">ABA therapy</option>
+                    <option value="educational therapy">educational therapy</option>
                 </select>
                <label>Password:</label>
-               <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
+               <input onChange={this.handleChange} type="text" name="password" value={this.state.password} placeholder="Please enter your password"></input>
                <input type="submit" className="ui teal button"></input>
            </form> 
            :
            <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>
-               <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
+               <input onChange={this.handleChange} type="text" name="username" value={this.state.username} placeholder="Please enter your username"></input>
                <label>Email:</label>
-               <input onChange={this.handleChange} type="text" name="email" value={this.state.email}></input>
+               <input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="Please enter your Email"></input>
                <label>Password:</label>
-               <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
+               <input onChange={this.handleChange} type="text" name="password" value={this.state.password} placeholder="Please enter your password"></input>
                <input type="submit" className="ui teal button"></input>
            </form> 
 

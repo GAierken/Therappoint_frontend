@@ -29,7 +29,7 @@ class App extends React.Component {
   
   
   render() {
-    
+    console.log(localStorage)
   return (
     <div className="App">
      <img className="logo" src={logo} alt="logo"/>

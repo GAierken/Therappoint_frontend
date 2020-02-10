@@ -6,6 +6,7 @@ import {setCategory} from './reducer/actions'
 class Home extends React.Component {
 
 handleClick = (evt) => {
+  localStorage.category = evt.target.innerText
   this.props.setCategory(evt.target.innerText)
 }
 

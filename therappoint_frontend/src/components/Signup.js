@@ -51,7 +51,7 @@ class Signup extends React.Component{
             return <Redirect to="/profile"></Redirect>
         } else {
         return (
-          this.props.category === 'Provider'?
+          localStorage.category === 'Provider'?
            <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>
                <input onChange={this.handleChange} type="text" name="username" value={this.state.username} placeholder="Please enter your username"></input>

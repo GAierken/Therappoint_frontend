@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import './Profile.css'
 import {Link} from 'react-router-dom'
-import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser, changeUpdateState } from '../reducer/actions'
+import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser, changeUpdateState, newSource } from '../reducer/actions'
 import uuid from 'uuid'
 import Calendar from './Calendar'
 import SearcBar from './SearchBar'
@@ -18,6 +18,9 @@ class Profile extends React.Component {
      rescheduleAppoinId: ''
  }
 
+ componentDidMount() {
+   this.props.newSource()
+ }
 
 handleLogOutClick = () => {
     
@@ -43,7 +46,7 @@ handleDelete = () => {
 appointmentLi = () => {
     return this.props.user.provider_appointments.map((appoint) => {
     return (
-                <List.Item>
+                <List.Item key={uuid()}>
                  <List.Content key={uuid()}>{appoint.appoint_date}</List.Content>
                  <Button size="mini" className="teal" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
                  <Button size="mini" className="red" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
@@ -106,7 +109,7 @@ updateAppointdate = () => {
 
 providerAppoLi = () => {
     return this.props.user.client_appointments.map((appoint) => {
-        return (<List.Item>
+        return (<List.Item key={uuid()}>
                     <List.Content key={uuid()}>{appoint.appoint_date}
                     <Button size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
                     <Button size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
@@ -230,8 +233,9 @@ const mapStateToProps = (state) => {
        user: state.user,
        date: state.date,
        pickedId: state.pickedId,
-       updated: state.updated
+       updated: state.updated,
+       source: state.source
     }
 }
 
-export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser, changeUpdateState})(Profile)
+export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser, changeUpdateState, newSource})(Profile)

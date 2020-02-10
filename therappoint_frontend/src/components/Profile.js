@@ -111,8 +111,8 @@ providerAppoLi = () => {
     return this.props.user.client_appointments.map((appoint) => {
         return (<List.Item key={uuid()}>
                     <List.Content key={uuid()}>{appoint.appoint_date}
-                    <Button size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
-                    <Button size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
+                    <Button className="teal" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
+                    <Button className="red" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
                     </List.Content>
                 </List.Item>)
         }
@@ -138,7 +138,7 @@ changeUpdatedState = () => {
 
 
     render(){
-        
+       
         return (
            <div className="top div">
            {/* search bar */}
@@ -160,16 +160,17 @@ changeUpdatedState = () => {
                                  <List.Icon name="linkify"/>
                                  <List.Content>Contact: {this.props.user.phone_number} </List.Content> 
                                
-                                
-                                    <Link to="/edit"><Button size="mini" onClick={this.changeUpdatedState} className='ui teal button'>Edit</Button></Link>
-                                    <Link to="/"><Button size="mini" onClick={this.handleDelete} className='ui teal button' >Delete</Button></Link>
+                                    <Segment>
+                                     <Link to="/edit"><Button size="mini" onClick={this.changeUpdatedState} className='teal'>Edit</Button></Link>
+                                     <Link to="/"><Button size="mini" onClick={this.handleDelete} className='red' >Delete</Button></Link>
+                                    </Segment>
                                 </List.Item>
                             </Segment> 
-                                <Grid>
-                                    <MapContainer/>
-                                </Grid>
+                            <Grid.Row>
+                               <MapContainer address={this.props.user.address}/>
+                            </Grid.Row>
                         </Segment.Group>
-                            
+                        
                                
                            
                         

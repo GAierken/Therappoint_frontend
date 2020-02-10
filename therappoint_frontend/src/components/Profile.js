@@ -7,7 +7,8 @@ import uuid from 'uuid'
 import Calendar from './Calendar'
 import SearcBar from './SearchBar'
 import MapContainer from './MapContainer'
-import { Segment, Button } from 'semantic-ui-react';
+import { Segment, Button, List, Image, Grid } from 'semantic-ui-react';
+
 
 class Profile extends React.Component {
 
@@ -41,11 +42,13 @@ handleDelete = () => {
 
 appointmentLi = () => {
     return this.props.user.provider_appointments.map((appoint) => {
-    return (<ul key={uuid()}>
-                <li key={uuid()}>{appoint.appoint_date}</li>
-                <button key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</button> 
-                <button key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</button>
-            </ul>)
+    return (
+                <List.Item>
+                 <List.Content key={uuid()}>{appoint.appoint_date}</List.Content>
+                 <Button size="mini" className="teal" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
+                 <Button size="mini" className="red" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
+                </List.Item>
+            )
     }
     )
 }
@@ -59,7 +62,7 @@ providersImg = () => {
 
     
     return uniqueProviders.map((provider) => {
-    return <img className="ui circular image" onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name} />
+    return <Image size="tiny" onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name } circular />
     }
     )
 }
@@ -103,11 +106,12 @@ updateAppointdate = () => {
 
 providerAppoLi = () => {
     return this.props.user.client_appointments.map((appoint) => {
-        return (<ul key={uuid()}>
-                    <li key={uuid()}>{appoint.appoint_date}</li>
-                    <button key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</button> 
-                    <button key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</button>
-                </ul>)
+        return (<List.Item>
+                    <List.Content key={uuid()}>{appoint.appoint_date}
+                    <Button size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
+                    <Button size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
+                    </List.Content>
+                </List.Item>)
         }
         )
 }
@@ -120,7 +124,7 @@ clientsImg = () => {
     
     
     return uniqueClients.map((client) => {
-    return <img className="ui circular image" onClick={this.pickProv} key={uuid()} data-id={client.id} src={client.img_url} alt={client.last_name} />
+    return <Image size="tiny" onClick={this.pickProv} key={uuid()} data-id={client.id} src={client.img_url} alt={client.last_name} circular/>
     }
     )
 }
@@ -136,61 +140,78 @@ changeUpdatedState = () => {
            <div className="top div">
            {/* search bar */}
            <SearcBar/>
-            <div className="ui three column grid">
+            <Grid relaxed columns={3}>
                 {/* beginning personal info */}
-                <div className="column">
-                    <div className="ui segment">
+               <Grid.Column>
+               <Segment>
                     {this.state.clicked?
                         <Segment.Group raised>
                             <Segment onClick={this.handleClick} className="content">
-                                <Segment className="header">Full name: {this.props.user.first_name} {this.props.user.last_name}</Segment> 
-                                <Segment className="header">Address: {this.props.user.address} </Segment>
-                                <Segment className="header">Email: {this.props.user.email} </Segment>
-                                <Segment className="header">Contact: {this.props.user.phone_number} </Segment> 
-                                <div><MapContainer/></div>
-                            </Segment>
-                            <Link to="/edit"><Button onClick={this.changeUpdatedState} className='ui teal button'>Edit</Button></Link>
-                            <Link to="/"><Button onClick={this.handleDelete} className='ui teal button' >Delete</Button></Link>
+                                <List.Item>
+                                 <List.Icon name='users'/>
+                                 <List.Content>Full name: {this.props.user.first_name} {this.props.user.last_name}</List.Content> 
+                                 <List.Icon name="marker"/>
+                                 <List.Content>Address: {this.props.user.address} </List.Content>
+                                 <List.Icon name="mail"/>
+                                 <List.Content>Email: {this.props.user.email} </List.Content>
+                                 <List.Icon name="linkify"/>
+                                 <List.Content>Contact: {this.props.user.phone_number} </List.Content> 
+                               
+                                
+                                    <Link to="/edit"><Button size="mini" onClick={this.changeUpdatedState} className='ui teal button'>Edit</Button></Link>
+                                    <Link to="/"><Button size="mini" onClick={this.handleDelete} className='ui teal button' >Delete</Button></Link>
+                                </List.Item>
+                            </Segment> 
+                                <Grid>
+                                    <MapContainer/>
+                                </Grid>
                         </Segment.Group>
+                            
+                               
+                           
+                        
                     :
-                        <div  onClick={this.handleClick} className="ui raised link card">
-                            <div  className="image">
-                            <img src={this.props.user.img_url} alt={this.props.user.username}/>
-                            </div>
-                            <div className="content">
-                            <article className="header">{this.props.user.username}</article>
-                            </div>
-                            <Link to="/"><button onClick={this.handleLogOutClick} className="ui teal button">Logout</button></Link>
-                        </div>
+                        <Segment.Group  onClick={this.handleClick} raised>
+                            <Segment>
+                             <Image src={this.props.user.img_url} alt={this.props.user.username} size="medium"/>
+                            </Segment>
+                            <Segment className="header">Hi! Welcome {this.props.user.username}! </Segment>
+                            <Segment>
+                             <Link to="/"><Button size="mini" onClick={this.handleLogOutClick} className="teal">Logout</Button></Link>
+                            </Segment>
+                        </Segment.Group>
                     }
-                    </div>
-                </div>
+                    
+                    </Segment>
+                    </Grid.Column>
 
                 {/* beginning of calender appointment making column */}
-                <div className="column">
-                    <div className="ui segment">
+                <Grid.Column>
+                    <Segment>
+                        Please click on the picture to choose
                         <div className="ui tiny circular images">
                         {this.props.user.providers? this.providersImg():null}
                         {this.props.user.clients? this.clientsImg():null}
                         </div>
-                        <Calendar />
-                        <button onClick={this.confirmAppo}>Schedule</button>
-                    </div>
-                </div>
-
+                        <Segment>Please choose a date to schedule your appointment<Calendar /></Segment>
+                        
+                        <Segment><Button size="mini" className="teal" onClick={this.confirmAppo}>Schedule</Button></Segment>
+                    </Segment>
+               
+                </Grid.Column>
                 {/* beginning of apointment history */}
-                <div className="column">
-                    <div className="ui segment">
-                        <ul>
-                           appointments history and following:
+                <Grid.Column>
+                    <Segment>
+                        <List>
+                           Appointments:
                          {this.props.user.provider_appointments? this.appointmentLi(): null}
                          {this.props.user.client_appointments? this.providerAppoLi(): null}
-                         {this.state.rescheduleClicked? <li><Calendar/><button onClick={this.updateAppointdate}>confirm</button></li>: null}
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                         </List>
+                         {this.state.rescheduleClicked? <Segment>Please select a date: <Calendar/><Button className="teal" onClick={this.updateAppointdate}>confirm</Button></Segment>: null}
+                         
+                    </Segment>
+                </Grid.Column>
+            </Grid>
             </div>
             
             

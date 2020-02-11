@@ -55,7 +55,11 @@ appointmentLi = () => {
                     <List.Header onClick={() => {
                         Swal.fire({
                             icon: 'info',
-                            text: `You have an appointment with Dr.${provider.last_name} on ${appoint.appoint_date}`
+                            text: `You have an appointment with ${provider.last_name} on ${appoint.appoint_date}`,
+                            imageUrl: `${provider.img_url}`,
+                            imageWidth: 200,
+                            imageHeight: 200,
+                            imageAlt: 'Custom image'
                         }  
                         )
                     }
@@ -127,13 +131,16 @@ providerAppoLi = () => {
     return this.props.user.client_appointments.map((appoint) => {
        
         let client = this.props.user.clients.find((c) => c.id === appoint.client_id)
-          console.log(client)
         return (<List.Item key={uuid()}>
                     <List.Content key={uuid()}>
                         <List.Header onClick={() => {
                         Swal.fire({
                             icon: 'info',
-                            text: `You have an appointment with ${client.last_name} on ${appoint.appoint_date}`
+                            text: `You have an appointment with ${client.last_name} on ${appoint.appoint_date}`,
+                            imageUrl: `${client.img_url}`,
+                            imageWidth: 200,
+                            imageHeight: 200,
+                            imageAlt: 'Custom image'
                         }  
                         )
                     }

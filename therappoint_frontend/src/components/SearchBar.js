@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {Search} from 'semantic-ui-react'
-import { setSearchedUser} from '../reducer/actions'
+import { setSearchedUser, setSearchedValue} from '../reducer/actions'
 import { Redirect } from 'react-router'
 
 
@@ -10,7 +10,6 @@ class SearchBar extends React.Component {
   state = {
       isLoading: false,
       results: [],
-      value: '',
       resultSelect: false
 
   }
@@ -19,42 +18,52 @@ class SearchBar extends React.Component {
 
   handleSearchChange = (evt) => {
       
-    
-      this.setState({
-          ...this.state,
-          value: evt.target.value.toLowerCase()
-      })
+      let newVal = evt.target.value
+     this.props.setSearchedValue(newVal)
+     
+     this.handleSource()
+     
  
-      if(this.props.source){
+      
+        
+}
+
+
+handleSource = () => {
+    
+    if(this.props.source){
         // different user would have different search result
         if(this.props.user.specialty){
             const newSource = this.props.source.map(object => {
-                return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase(), ...object}
+                return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase() + " " + object.username.toLowerCase(), ...object}
             }).filter((obj) => {
                 return !obj.specialty
             }
             )
+            
             const results = newSource.filter((obj) => {
-                 return obj.title.includes(this.state.value)
+                 return obj.title.indexOf(this.props.searchedValue) !== -1 
                 
             })
+
+            
 
             this.setState({
                 ...this.state,
                 results: results
             })}else{
                 const newSource = this.props.source.map(object => {
-                    return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase(), ...object}
+                    return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase() + " " + object.username.toLowerCase(), ...object}
                 }).filter((obj) => {
                     return obj.specialty
                 }
                 )
 
                 const results = newSource.filter((obj) => {
-                     return obj.title.includes(this.state.value)
+                     return obj.title.includes(this.props.searchedValue)
                     
                 })
-
+               
                 this.setState({
                     ...this.state,
                     results: results
@@ -63,12 +72,8 @@ class SearchBar extends React.Component {
             }
         }
     
-
-     
- 
-      
-        
 }
+
 
   handleResultSelect = (evt) => {
        let searchedUser = [...this.state.results].find((user) => {
@@ -117,9 +122,10 @@ render(){
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        source: state.source
+        source: state.source,
+        searchedValue: state.searchedValue
     }
 }
 
 
-export default connect(mapStateToProps, {setSearchedUser})(SearchBar)
+export default connect(mapStateToProps, {setSearchedUser, setSearchedValue})(SearchBar)

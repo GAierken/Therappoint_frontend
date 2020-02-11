@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setCategory} from './reducer/actions'
+import {Button} from 'semantic-ui-react'
 
 class Home extends React.Component {
 
@@ -14,9 +15,9 @@ render(){
 
    return (
          <div id="button_1" className="ui teal buttons">
-           <Link to="/client"><button onClick={this.handleClick} className="ui massive button">Client</button></Link>
+           <Link to="/client"><Button size="massive" onClick={this.handleClick} className="ui massive button">Client</Button></Link>
            <div className="or"></div>
-           <Link to="/provider"><button onClick={this.handleClick} className="ui massive button">Provider</button></Link>
+           <Link to="/provider"><Button onClick={this.handleClick} className="ui massive button">Provider</Button></Link>
          </div>
    )
 

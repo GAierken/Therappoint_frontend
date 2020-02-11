@@ -7,7 +7,7 @@ import uuid from 'uuid'
 import Calendar from './Calendar'
 import SearcBar from './SearchBar'
 import MapContainer from './MapContainer'
-import { Segment, Button, List, Image, Grid } from 'semantic-ui-react';
+import { Segment, Button, List, Image, Grid, GridColumn } from 'semantic-ui-react';
 import Swal from 'sweetalert2'
 
 
@@ -55,18 +55,20 @@ appointmentLi = () => {
                     <List.Header onClick={() => {
                         Swal.fire({
                             icon: 'info',
-                            text: `You have an appointment with ${provider.last_name} on ${appoint.appoint_date}`,
+                            text: `You have an appointment with ${provider.last_name} on ${appoint.appoint_date}.`,
                             imageUrl: `${provider.img_url}`,
                             imageWidth: 200,
                             imageHeight: 200,
-                            imageAlt: 'Custom image'
+                            imageAlt: 'Custom image',
+                            position: 'top-end',
+                            background: '#b2eee6'
                         }  
                         )
                     }
                     }>{appoint.appoint_date}</List.Header>
                      <List.Description>
                       <Button size="mini" className="teal" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
-                      <Button size="mini" className="red" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
+                      <Button size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
                      </List.Description>
                  </List.Content>
                 </List.Item>
@@ -136,18 +138,21 @@ providerAppoLi = () => {
                         <List.Header onClick={() => {
                         Swal.fire({
                             icon: 'info',
-                            text: `You have an appointment with ${client.last_name} on ${appoint.appoint_date}`,
+                            text: `You have an appointment with ${client.last_name} on ${appoint.appoint_date}.`,
                             imageUrl: `${client.img_url}`,
                             imageWidth: 200,
                             imageHeight: 200,
-                            imageAlt: 'Custom image'
+                            imageAlt: 'Custom image',
+                            position: 'top-end',
+                            background: '#b2eee6'
+                     
                         }  
                         )
                     }
                     }>{appoint.appoint_date}</List.Header>
                         <List.Description>
                             <Button className="teal" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
-                            <Button className="red" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
+                            <Button className="cancel" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
                         </List.Description>
                     </List.Content>
                 </List.Item>)
@@ -170,6 +175,31 @@ clientsImg = () => {
 
 changeUpdatedState = () => {
     this.props.changeUpdateState()
+}
+
+handleNoAppo = () => {
+    if(this.props.provider_appointments || this.props.client_appointments){
+        return(
+            <Grid><GridColumn>Your Appointments:</GridColumn></Grid>
+        )
+    }else{
+        return(
+            <Grid><GridColumn>Please make an appointment</GridColumn></Grid>
+        )
+    }
+}
+
+
+handleNoPickedUser = () => {
+    if(this.props.providers === [] || this.props.clients === []){
+        return(
+            <Grid><GridColumn>Please find your providers or clients</GridColumn></Grid>
+        )
+    }else{
+        return(
+            <Grid><GridColumn>Please click on picture to choose</GridColumn></Grid>
+        )
+    }
 }
 
 
@@ -198,8 +228,12 @@ changeUpdatedState = () => {
                                  <List.Content>Contact: {this.props.user.phone_number} </List.Content> 
                                
                                     <Segment>
-                                     <Link to="/edit"><Button size="mini" onClick={this.changeUpdatedState} className='teal'>Edit</Button></Link>
-                                     <Link to="/"><Button size="mini" onClick={this.handleDelete} className='red' >Delete</Button></Link>
+                                      <Grid>
+                                          <Grid.Column>
+                                            <Link to="/edit"><Button size="mini" onClick={this.changeUpdatedState} className='blue'>Edit</Button></Link>
+                                            <Link to="/"><Button size="mini" onClick={this.handleDelete} className='red' >Delete</Button></Link>
+                                          </Grid.Column>
+                                      </Grid>
                                     </Segment>
                                 </List.Item>
                             </Segment> 
@@ -207,10 +241,6 @@ changeUpdatedState = () => {
                                <MapContainer address={this.props.user.address}/>
                             </Grid.Row>
                         </Segment.Group>
-                        
-                               
-                           
-                        
                     :
                         <Segment.Group  onClick={this.handleClick} raised>
                             <Segment>
@@ -218,7 +248,11 @@ changeUpdatedState = () => {
                             </Segment>
                             <Segment className="header">Hi! Welcome {this.props.user.username}! </Segment>
                             <Segment>
-                             <Link to="/"><Button size="mini" onClick={this.handleLogOutClick} className="teal">Logout</Button></Link>
+                                <Grid>
+                                    <Grid.Column>
+                                        <Link to="/"><Button size="mini" onClick={this.handleLogOutClick} className="grey">Logout</Button></Link>
+                                    </Grid.Column>
+                                </Grid>
                             </Segment>
                         </Segment.Group>
                     }
@@ -229,26 +263,38 @@ changeUpdatedState = () => {
                 {/* beginning of calender appointment making column */}
                 <Grid.Column>
                     <Segment>
-                        Please click on the picture to choose
-                        <div className="ui tiny circular images">
-                        {this.props.user.providers? this.providersImg():null}
-                        {this.props.user.clients? this.clientsImg():null}
-                        </div>
-                        <Segment>Please choose a date to schedule your appointment<Calendar /></Segment>
+                        {this.handleNoPickedUser()}
+                        <Grid>
+                            <Grid.Column>
+                            <div className="ui tiny circular images">
+                            {this.props.user.providers? this.providersImg():null}
+                            {this.props.user.clients? this.clientsImg():null}
+                            </div>
+                            </Grid.Column>
+                        </Grid>
+                        <Segment>Please choose a date to schedule your appointment
+                            <Grid><Grid.Column><Calendar /></Grid.Column></Grid>
+                        </Segment>
                         
-                        <Segment><Button size="mini" className="teal" onClick={this.confirmAppo}>Schedule</Button></Segment>
+                        <Segment>
+                            <Grid>
+                                <Grid.Column>
+                                    <Button size="mini" className="teal" onClick={this.confirmAppo}>Schedule</Button>
+                                </Grid.Column>  
+                            </Grid>
+                        </Segment>
                     </Segment>
                
                 </Grid.Column>
                 {/* beginning of apointment history */}
                 <Grid.Column>
                     <Segment>
+                        {this.handleNoAppo()}
                         <List>
-                           Appointments:
                          {this.props.user.provider_appointments? this.appointmentLi(): null}
                          {this.props.user.client_appointments? this.providerAppoLi(): null}
                          </List>
-                         {this.state.rescheduleClicked? <Segment>Please select a date: <Calendar/><Button className="teal" onClick={this.updateAppointdate}>confirm</Button></Segment>: null}
+                         {this.state.rescheduleClicked? <Grid><Segment>Please select a date: <Calendar/><Button size="mini" className="teal" onClick={this.updateAppointdate}>confirm</Button></Segment></Grid>: null}
                          
                     </Segment>
                 </Grid.Column>

@@ -68,7 +68,7 @@ appointmentLi = () => {
                     }>{appoint.appoint_date}</List.Header>
                      <List.Description>
                       <Button size="mini" className="teal" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
-                      <Button size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
+                      <Button size="mini" id="appocancel" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
                      </List.Description>
                  </List.Content>
                 </List.Item>
@@ -152,7 +152,7 @@ providerAppoLi = () => {
                     }>{appoint.appoint_date}</List.Header>
                         <List.Description>
                             <Button className="teal" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
-                            <Button className="cancel" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
+                            <Button id="appocancel02" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
                         </List.Description>
                     </List.Content>
                 </List.Item>)

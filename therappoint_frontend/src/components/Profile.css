@@ -2,6 +2,12 @@ button.ui {
   float: right;
 }
 
-button.cancel {
-  color: #f99192;
+button#appocancel {
+  background-color: #f99192;
+  color: white
+}
+
+button#appocancel02 {
+  background-color: #f99192;
+  color: white
 }

@@ -35,6 +35,7 @@ handleSource = () => {
         // different user would have different search result
         if(this.props.user.specialty){
             const newSource = this.props.source.map(object => {
+                /////avoid user has no first name bug
                 if (object.first_name && object.last_name) {
                     return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase() + " " + object.username.toLowerCase(), ...object}
                 } else {
@@ -58,6 +59,7 @@ handleSource = () => {
                 results: results
             })}else{
                 const newSource = this.props.source.map(object => {
+                    /////avoid user has no first name bug
                     if (object.first_name && object.last_name) {
                         return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase() + " " + object.username.toLowerCase(), ...object}
                     } else {

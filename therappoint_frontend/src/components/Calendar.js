@@ -12,10 +12,20 @@ class Calendar extends React.Component {
   };
  
   handleChange = date => {
+   ///// restructure the date
+   let dateFirst = JSON.stringify(date).slice(1, 20).replace('T', ' ').split(" ")[0]
+   let correctedTime = JSON.stringify(date).slice(1, 20).replace("T", " ").split(" ")[1].split(":")
+   let correctedHour = (correctedTime[0] - 5).toString()
+   let newArr = correctedTime.splice(1)
+       newArr.unshift(correctedHour)
+   let dateSecond = newArr.join(":")
+       
+   let newDate = dateFirst + " " + dateSecond
+   
     this.setState({
       startDate: date
     });
-    this.props.setDate(date)
+    this.props.setDate(newDate)
 
     
   };
@@ -32,7 +42,7 @@ class Calendar extends React.Component {
         timeFormat="p"
         timeIntervals={15}
         timeCaption="time"
-        dateFormat="Pp"
+        dateFormat="MM/dd/yyyy h:mm aa"
       />
     );
   }

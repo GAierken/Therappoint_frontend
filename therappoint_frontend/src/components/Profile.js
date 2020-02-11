@@ -71,6 +71,7 @@ providersImg = () => {
 }
 
 confirmAppo = () => {
+  
     if(this.props.user.specialty){
     this.props.createAppointment(this.props.date, this.props.pickedId, this.props.user.id)}
     else{

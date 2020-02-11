@@ -183,6 +183,7 @@ export const deleteUser = (user) => {
 
 
 export const setDate = (date) => {
+    
     return {
         type: 'DATE',
         date: date

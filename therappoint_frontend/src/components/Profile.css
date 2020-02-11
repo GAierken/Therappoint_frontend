@@ -1,3 +1,7 @@
 button.ui {
   float: right;
 }
+
+button.cancel {
+  color: #f99192;
+}

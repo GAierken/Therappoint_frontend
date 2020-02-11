@@ -8,6 +8,7 @@ import Calendar from './Calendar'
 import SearcBar from './SearchBar'
 import MapContainer from './MapContainer'
 import { Segment, Button, List, Image, Grid } from 'semantic-ui-react';
+import Swal from 'sweetalert2'
 
 
 class Profile extends React.Component {
@@ -44,12 +45,26 @@ handleDelete = () => {
 }
 
 appointmentLi = () => {
+  
     return this.props.user.provider_appointments.map((appoint) => {
+           let provider = this.props.user.providers.find((p) => p.id === appoint.provider_id)
+           
     return (
                 <List.Item key={uuid()}>
-                 <List.Content key={uuid()}>{appoint.appoint_date}</List.Content>
-                 <Button size="mini" className="teal" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
-                 <Button size="mini" className="red" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
+                 <List.Content key={uuid()}>
+                    <List.Header onClick={() => {
+                        Swal.fire({
+                            icon: 'info',
+                            text: `You have an appointment with Dr.${provider.last_name} on ${appoint.appoint_date}`
+                        }  
+                        )
+                    }
+                    }>{appoint.appoint_date}</List.Header>
+                     <List.Description>
+                      <Button size="mini" className="teal" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
+                      <Button size="mini" className="red" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
+                     </List.Description>
+                 </List.Content>
                 </List.Item>
             )
     }
@@ -110,10 +125,23 @@ updateAppointdate = () => {
 
 providerAppoLi = () => {
     return this.props.user.client_appointments.map((appoint) => {
+       
+        let client = this.props.user.clients.find((c) => c.id === appoint.client_id)
+          console.log(client)
         return (<List.Item key={uuid()}>
-                    <List.Content key={uuid()}>{appoint.appoint_date}
-                    <Button className="teal" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
-                    <Button className="red" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
+                    <List.Content key={uuid()}>
+                        <List.Header onClick={() => {
+                        Swal.fire({
+                            icon: 'info',
+                            text: `You have an appointment with ${client.last_name} on ${appoint.appoint_date}`
+                        }  
+                        )
+                    }
+                    }>{appoint.appoint_date}</List.Header>
+                        <List.Description>
+                            <Button className="teal" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
+                            <Button className="red" size="mini" key={uuid()} data-id={appoint.id} onClick={this.handleAppoDelete}>Cancel</Button>
+                        </List.Description>
                     </List.Content>
                 </List.Item>)
         }
@@ -136,6 +164,7 @@ clientsImg = () => {
 changeUpdatedState = () => {
     this.props.changeUpdateState()
 }
+
 
 
     render(){

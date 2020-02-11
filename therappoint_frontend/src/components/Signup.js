@@ -13,7 +13,8 @@ class Signup extends React.Component{
        username: "",
        email: "",
        password: "",
-       specialty:""
+       specialty:"",
+       img_url: "https://clipartart.com/images/default-profile-picture-clipart-3.jpg"
 
    }
 
@@ -29,7 +30,7 @@ class Signup extends React.Component{
    handleSubmit = (evt) => {
     evt.preventDefault()
     let user = this.state
-    
+    console.log(this.state)
     this.props.createUser(user)
     
 

@@ -62,7 +62,7 @@ handleScheduleClick = () => {
                  <Segment>Contact number: {localStorage.searched_phone_number}</Segment>
                  <Segment>Please select a date: <Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="teal">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui teal button">Back</Button></Segment>
                  <Segment>Address: {localStorage.searched_address? localStorage.searched_address : "n/a"}</Segment>
-                 <Grid><Map/></Grid>
+                 <Grid><Map address={localStorage.searched_address}/></Grid>
               </Segment.Group>
               :
               <Segment.Group raised>
@@ -70,7 +70,7 @@ handleScheduleClick = () => {
                  <Segment>Email: {localStorage.searched_email}</Segment>
                  <Segment>Contact number: {localStorage.searched_phone_number}</Segment>
                  <Segment>Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
-                 <Segment><Map/></Segment>
+                 <Segment><Map address={localStorage.searched_address}/></Segment>
                  <Segment>Please select a date:<Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="ui teal button">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui teal button">Back</Button></Segment>
               </Segment.Group>}
             </Grid.Column>

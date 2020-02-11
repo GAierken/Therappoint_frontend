@@ -287,3 +287,9 @@ export const setSearchedUser = (user) => {
     }
 }
 
+export const setSearchedValue = (value) => {
+    return {
+        type: 'SET_SEARCHED_VALUE',
+        value: value
+    }
+}

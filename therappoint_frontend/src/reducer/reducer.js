@@ -63,6 +63,11 @@ const userReducer = (state = initialState, action) => {
                 searchedUser: action.searchedUser
             }
 
+        case 'SET_SEARCHED_VALUE':
+            return {
+                ...state,
+                searchedValue: action.value
+            }
         default:
            return state
     }

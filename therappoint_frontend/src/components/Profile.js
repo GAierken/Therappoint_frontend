@@ -86,10 +86,12 @@ providersImg = () => {
 
     
     return uniqueProviders.map((provider) => {
-    return <Image size="tiny" onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name } circular />
+    return <Image  size="tiny" onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name } circular />
     }
     )
 }
+
+
 
 confirmAppo = () => {
   
@@ -101,6 +103,7 @@ confirmAppo = () => {
 }
 
 pickProv = (evt) => {
+   
     this.props.setPickedUserId(evt.target.dataset.id)
     
 }
@@ -168,7 +171,7 @@ clientsImg = () => {
     
     
     return uniqueClients.map((client) => {
-    return <Image size="tiny" onClick={this.pickProv} key={uuid()} data-id={client.id} src={client.img_url} alt={client.last_name} circular/>
+    return <Image size="tiny"  onClick={this.pickProv} key={uuid()} data-id={client.id} src={client.img_url} alt={client.last_name} circular/>
     }
     )
 }
@@ -268,6 +271,7 @@ handleNoPickedUser = () => {
                         {this.handleNoPickedUser()}
                         <Grid>
                             <Grid.Column>
+
                             <div className="ui tiny circular images">
                             {this.props.user.providers? this.providersImg():null}
                             {this.props.user.clients? this.clientsImg():null}

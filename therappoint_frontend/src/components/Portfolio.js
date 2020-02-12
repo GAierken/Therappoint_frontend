@@ -42,8 +42,8 @@ handleScheduleClick = () => {
 }
 
 handleShowSegment = () => {
-
-    if (localStorage.searched_specialty === true) {
+console.log(localStorage.searched_specialty)
+    if (localStorage.searched_specialty !== "null") {
         return(
             <Segment.Group raised>
                 <Segment>Name: {localStorage.searched_name}</Segment>

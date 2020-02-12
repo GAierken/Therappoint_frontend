@@ -11,3 +11,31 @@ button#appocancel02 {
   background-color: #f99192;
   color: white
 }
+
+div.content.userInfo.jik{
+  font-family: 'Fira Sans Extra Condensed', sans-serif;
+  color: #385a7c;
+}
+
+div.welcome.user.bat {
+  color:  #385a7c;
+  font-family: 'Squada One', cursive;
+  font-size: x-large;
+}
+
+div.column.provider.img.text {
+  color:  #385a7c;
+  font-family: 'Squada One', cursive;
+  font-size: large;
+}
+
+div.segment.choose.date.text {
+  color:  #385a7c;
+  font-family: 'Squada One', cursive;
+  font-size: large;
+}
+
+img.turkum.rasimlar{
+  opacity: 0.5;
+}
+

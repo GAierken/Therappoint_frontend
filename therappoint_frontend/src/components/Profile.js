@@ -86,10 +86,12 @@ providersImg = () => {
 
     
     return uniqueProviders.map((provider) => {
-    return <Image size="tiny" onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name } circular />
+    return <Image  size="tiny" onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name } circular />
     }
     )
 }
+
+
 
 confirmAppo = () => {
   
@@ -101,6 +103,7 @@ confirmAppo = () => {
 }
 
 pickProv = (evt) => {
+   
     this.props.setPickedUserId(evt.target.dataset.id)
     
 }
@@ -168,7 +171,7 @@ clientsImg = () => {
     
     
     return uniqueClients.map((client) => {
-    return <Image size="tiny" onClick={this.pickProv} key={uuid()} data-id={client.id} src={client.img_url} alt={client.last_name} circular/>
+    return <Image size="tiny"  onClick={this.pickProv} key={uuid()} data-id={client.id} src={client.img_url} alt={client.last_name} circular/>
     }
     )
 }
@@ -210,9 +213,9 @@ handleNoPickedUser = () => {
            <div className="top div">
            {/* search bar */}
            <SearcBar/>
-            <Grid relaxed columns={3}>
+            <Grid relaxed >
                 {/* beginning personal info */}
-               <Grid.Column>
+               <Grid.Column width={4}>
                <Segment>
                     {this.state.clicked?
                         <Segment.Group raised>
@@ -263,11 +266,12 @@ handleNoPickedUser = () => {
                     </Grid.Column>
 
                 {/* beginning of calender appointment making column */}
-                <Grid.Column>
+                <Grid.Column width={6}>
                     <Segment>
                         {this.handleNoPickedUser()}
                         <Grid>
                             <Grid.Column>
+
                             <div className="ui tiny circular images">
                             {this.props.user.providers? this.providersImg():null}
                             {this.props.user.clients? this.clientsImg():null}
@@ -275,21 +279,12 @@ handleNoPickedUser = () => {
                             </Grid.Column>
                         </Grid>
                         <Segment>Please choose a date to schedule your appointment
-                            <Grid><Grid.Column><Calendar /></Grid.Column></Grid>
-                        </Segment>
-                        
-                        <Segment>
-                            <Grid>
-                                <Grid.Column>
-                                    <Button size="mini" className="teal" onClick={this.confirmAppo}>Schedule</Button>
-                                </Grid.Column>  
-                            </Grid>
+                            <Grid><Grid.Column><Calendar /><Button size="mini" className="teal" onClick={this.confirmAppo}>Schedule</Button></Grid.Column></Grid>
                         </Segment>
                     </Segment>
-               
                 </Grid.Column>
                 {/* beginning of apointment history */}
-                <Grid.Column>
+                <Grid.Column width={6}>
                     <Segment>
                         {this.handleNoAppo()}
                         <List>

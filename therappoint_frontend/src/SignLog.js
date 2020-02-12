@@ -6,15 +6,17 @@ class SignLog extends React.Component {
 
 render(){
     return (
-        
-        <div id="button_2" className="ui teal buttons">
-           <Link to="/signup"><button className="ui massive button kunupi">Sign Up</button></Link>
+        <div>
+        <div id="button_2" className="ui buttons">
+           <Link to="/signup"><button className="ui massive teal button kunupi">Sign Up</button></Link>
            <div className="or"></div>
-           <Link to="/login"><button className="ui massive button kunupi">Login</button></Link>
+           <Link to="/login"><button className="ui massive teal button kunupi">Login</button></Link>
            
          </div>
-         
-         
+         <div>
+         <Link to="/"><button className="ui mini button blue kaytish">Back</button></Link>
+         </div>
+         </div>
     )
 }
 

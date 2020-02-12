@@ -210,9 +210,9 @@ handleNoPickedUser = () => {
            <div className="top div">
            {/* search bar */}
            <SearcBar/>
-            <Grid relaxed columns={3}>
+            <Grid relaxed >
                 {/* beginning personal info */}
-               <Grid.Column>
+               <Grid.Column width={4}>
                <Segment>
                     {this.state.clicked?
                         <Segment.Group raised>
@@ -263,7 +263,7 @@ handleNoPickedUser = () => {
                     </Grid.Column>
 
                 {/* beginning of calender appointment making column */}
-                <Grid.Column>
+                <Grid.Column width={6}>
                     <Segment>
                         {this.handleNoPickedUser()}
                         <Grid>
@@ -275,21 +275,12 @@ handleNoPickedUser = () => {
                             </Grid.Column>
                         </Grid>
                         <Segment>Please choose a date to schedule your appointment
-                            <Grid><Grid.Column><Calendar /></Grid.Column></Grid>
-                        </Segment>
-                        
-                        <Segment>
-                            <Grid>
-                                <Grid.Column>
-                                    <Button size="mini" className="teal" onClick={this.confirmAppo}>Schedule</Button>
-                                </Grid.Column>  
-                            </Grid>
+                            <Grid><Grid.Column><Calendar /><Button size="mini" className="teal" onClick={this.confirmAppo}>Schedule</Button></Grid.Column></Grid>
                         </Segment>
                     </Segment>
-               
                 </Grid.Column>
                 {/* beginning of apointment history */}
-                <Grid.Column>
+                <Grid.Column width={6}>
                     <Segment>
                         {this.handleNoAppo()}
                         <List>

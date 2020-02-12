@@ -15,9 +15,9 @@ render(){
 
    return (
          <div id="button_1" className="ui teal buttons">
-           <Link to="/client"><Button size="massive" onClick={this.handleClick} className="ui massive button">Client</Button></Link>
+           <Link to="/client"><Button size="massive" onClick={this.handleClick} className="ui massive button kunupi">Client</Button></Link>
            <div className="or"></div>
-           <Link to="/provider"><Button onClick={this.handleClick} className="ui massive button">Provider</Button></Link>
+           <Link to="/provider"><Button onClick={this.handleClick} className="ui massive button kunupi">Provider</Button></Link>
          </div>
    )
 

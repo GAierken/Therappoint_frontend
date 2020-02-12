@@ -6,6 +6,14 @@ img.logo {
 }
 
 
+button.kunupi {
+  
+  width: 15rem;
+  height: 10rem;
+  
+  
+  
+}
 #button_1 {
   height: 10rem;
   display: flex;

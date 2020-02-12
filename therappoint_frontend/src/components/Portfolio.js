@@ -5,6 +5,7 @@ import Calendar from './Calendar'
 import { Redirect } from 'react-router'
 import {createAppointment} from '../reducer/actions'
 import Map from './MapContainer'
+import './Portfolio.css'
 
 
 class Portfolio extends React.Component {
@@ -46,22 +47,22 @@ console.log(localStorage.searched_specialty)
     if (localStorage.searched_specialty !== "null") {
         return(
             <Segment.Group raised>
-                <Segment>Name: {localStorage.searched_name}</Segment>
-                <Segment>Specialty: {localStorage.searched_specialty}</Segment>
-                <Segment>Board Certified? {localStorage.searched_board_certified? "Yes" : "No"}</Segment>
-                <Segment>Email: {localStorage.searched_email}</Segment>
-                <Segment>Contact number: {localStorage.searched_phone_number}</Segment>
-                <Segment>Please select a date: <Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="teal">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui blue button">Back</Button></Segment>
-                <Segment>Address: {localStorage.searched_address? localStorage.searched_address : "n/a"}</Segment>
+                <Segment className="text koek">Name: {localStorage.searched_name}</Segment>
+                <Segment className="text koek">Specialty: {localStorage.searched_specialty}</Segment>
+                <Segment className="text koek">Board Certified? {localStorage.searched_board_certified? "Yes" : "No"}</Segment>
+                <Segment className="text koek">Email: {localStorage.searched_email}</Segment>
+                <Segment className="text koek">Contact number: {localStorage.searched_phone_number}</Segment>
+                <Segment className="text koek">Please select a date: <Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="teal">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui blue button">Back</Button></Segment>
+                <Segment className="text koek">Address: {localStorage.searched_address? localStorage.searched_address : "n/a"}</Segment>
            <Grid><Map address={localStorage.searched_address}/></Grid>
         </Segment.Group>
         )
     } else {
         return ( <Segment.Group raised>
-                    <Segment>Name: {localStorage.searched_name}</Segment>
-                    <Segment>Email: {localStorage.searched_email}</Segment>
-                    <Segment>Contact number: {localStorage.searched_phone_number}</Segment>
-                    <Segment>Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
+                    <Segment className="text koek">Name: {localStorage.searched_name}</Segment>
+                    <Segment className="text koek">Email: {localStorage.searched_email}</Segment>
+                    <Segment className="text koek">Contact number: {localStorage.searched_phone_number}</Segment>
+                    <Segment className="text koek">Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
                     <Grid><Grid.Column><Segment>Please select a date:<Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="ui teal button">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui blue button">Back</Button></Segment></Grid.Column></Grid>
                     <Grid><Map address={localStorage.searched_address}/></Grid>
                  </Segment.Group>)

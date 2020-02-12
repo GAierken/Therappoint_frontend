@@ -8,9 +8,9 @@ render(){
     return (
         
         <div id="button_2" className="ui teal buttons">
-           <Link to="/signup"><button className="ui massive button">Sign Up</button></Link>
+           <Link to="/signup"><button className="ui massive button kunupi">Sign Up</button></Link>
            <div className="or"></div>
-           <Link to="/login"><button className="ui massive button">Login</button></Link>
+           <Link to="/login"><button className="ui massive button kunupi">Login</button></Link>
            
          </div>
          

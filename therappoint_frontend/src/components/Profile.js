@@ -86,7 +86,7 @@ providersImg = () => {
 
     
     return uniqueProviders.map((provider) => {
-    return <Image  size="tiny" onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name } circular />
+    return <Image  className="turkum rasimlar"size="tiny" onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name } circular />
     }
     )
 }
@@ -103,7 +103,7 @@ confirmAppo = () => {
 }
 
 pickProv = (evt) => {
-   
+   evt.target.style.opacity = 1
     this.props.setPickedUserId(evt.target.dataset.id)
     
 }
@@ -171,7 +171,7 @@ clientsImg = () => {
     
     
     return uniqueClients.map((client) => {
-    return <Image size="tiny"  onClick={this.pickProv} key={uuid()} data-id={client.id} src={client.img_url} alt={client.last_name} circular/>
+    return <Image className="turkum rasimlar" size="tiny"  onClick={this.pickProv} key={uuid()} data-id={client.id} src={client.img_url} alt={client.last_name} circular/>
     }
     )
 }
@@ -183,11 +183,11 @@ changeUpdatedState = () => {
 handleNoAppo = () => {
     if(this.props.provider_appointments || this.props.client_appointments){
         return(
-            <Grid><GridColumn>Your Appointments:</GridColumn></Grid>
+            <Grid><GridColumn className="provider img text">Your Appointments:</GridColumn></Grid>
         )
     }else{
         return(
-            <Grid><GridColumn>Please make an appointment</GridColumn></Grid>
+            <Grid><GridColumn className="provider img text">Please make an appointment</GridColumn></Grid>
         )
     }
 }
@@ -196,11 +196,11 @@ handleNoAppo = () => {
 handleNoPickedUser = () => {
     if(this.props.providers === [] || this.props.clients === []){
         return(
-            <Grid><GridColumn>Please find your providers or clients</GridColumn></Grid>
+            <Grid><GridColumn className="provider img text">Please find your providers or clients</GridColumn></Grid>
         )
     }else{
         return(
-            <Grid><GridColumn>Please click on picture to choose</GridColumn></Grid>
+            <Grid><GridColumn className="provider img text">Please click on picture to choose</GridColumn></Grid>
         )
     }
 }
@@ -219,7 +219,7 @@ handleNoPickedUser = () => {
                <Segment>
                     {this.state.clicked?
                         <Segment.Group raised>
-                            <Segment onClick={this.handleClick} className="content">
+                            <Segment onClick={this.handleClick} className="content userInfo jik">
                                 <List.Item>
                                  <List.Icon name='users'/>
                                  <List.Content>Full name: {this.props.user.first_name} {this.props.user.last_name}</List.Content> 
@@ -251,7 +251,7 @@ handleNoPickedUser = () => {
                             <Segment>
                              <Image src={this.props.user.img_url} alt={this.props.user.username} size="medium"/>
                             </Segment>
-                            <Segment className="header">Hi! Welcome {this.props.user.username}! </Segment>
+                            <Segment className="welcome user bat">Hi! Welcome {this.props.user.username}! </Segment>
                             <Segment>
                                 <Grid>
                                     <Grid.Column>
@@ -278,7 +278,7 @@ handleNoPickedUser = () => {
                             </div>
                             </Grid.Column>
                         </Grid>
-                        <Segment>Please choose a date to schedule your appointment
+                        <Segment className="choose date text" >Please choose a date to schedule your appointment
                             <Grid><Grid.Column><Calendar /><Button size="mini" className="teal" onClick={this.confirmAppo}>Schedule</Button></Grid.Column></Grid>
                         </Segment>
                     </Segment>

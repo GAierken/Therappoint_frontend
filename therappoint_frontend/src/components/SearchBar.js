@@ -88,9 +88,12 @@ handleSource = () => {
 
 
   handleResultSelect = (evt) => {
+      
        let searchedUser = [...this.state.results].find((user) => {
            return user.title === evt.target.innerText
        })
+
+    
 
           this.props.setSearchedUser(searchedUser)
          
@@ -100,8 +103,8 @@ handleSource = () => {
           localStorage.searched_address = searchedUser.address
           localStorage.searched_specialty = searchedUser.specialty
           localStorage.searched_board_certified = searchedUser.board_certified
-          localStorage.searched_email = searchedUser.searched_email
-          localStorage.searched_phone_number = searchedUser.searched_phone_number
+          localStorage.searched_email = searchedUser.email
+          localStorage.searched_phone_number = searchedUser.phone_number
 
       this.setState(
           {...this.state, resultSelect: !this.state.resultSelect}

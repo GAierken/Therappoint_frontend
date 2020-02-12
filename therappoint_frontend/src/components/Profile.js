@@ -226,7 +226,7 @@ handleNoPickedUser = () => {
                                  <List.Content>Email: {this.props.user.email} </List.Content>
                                  <List.Icon name="linkify"/>
                                  <List.Content>Contact: {this.props.user.phone_number} </List.Content> 
-                               
+                                 </List.Item>
                                     <Segment>
                                       <Grid>
                                           <Grid.Column>
@@ -235,11 +235,13 @@ handleNoPickedUser = () => {
                                           </Grid.Column>
                                       </Grid>
                                     </Segment>
-                                </List.Item>
+                                
                             </Segment> 
-                            <Grid.Row>
+                            
+                            <Grid.Column>
                                <MapContainer address={this.props.user.address}/>
-                            </Grid.Row>
+                            </Grid.Column>
+                            
                         </Segment.Group>
                     :
                         <Segment.Group  onClick={this.handleClick} raised>
@@ -294,7 +296,12 @@ handleNoPickedUser = () => {
                          {this.props.user.provider_appointments? this.appointmentLi(): null}
                          {this.props.user.client_appointments? this.providerAppoLi(): null}
                          </List>
-                         {this.state.rescheduleClicked? <Grid><Segment>Please select a date: <Calendar/><Button size="mini" className="teal" onClick={this.updateAppointdate}>confirm</Button></Segment></Grid>: null}
+                         {this.state.rescheduleClicked? <Grid><Segment>Please select a date: <Calendar/><Button size="mini" className="teal" onClick={this.updateAppointdate}>confirm</Button><Button size="mini" color="blue" onClick={() => {
+                             this.setState({
+                                 rescheduleClicked: false
+                             })
+                         }
+                         }>Back</Button></Segment></Grid>: null}
                          
                     </Segment>
                 </Grid.Column>

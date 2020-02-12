@@ -26,7 +26,7 @@ componentDidMount(){
 
 
     render(){
-      
+     
         return(
         <Map google={this.props.google} zoom={10} initialCenter={{
           lat: 40.73,

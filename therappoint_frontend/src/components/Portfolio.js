@@ -77,14 +77,19 @@ handleShowSegment = () => {
             return <Redirect to="/profile"></Redirect>
         }else{
         return (
+           
             <Grid>
-            <Grid.Column width={4}>
-              <Image src={localStorage.searched_img}/>
-            </Grid.Column>
+                  <Grid.Column width={4}>
+                    <Segment>
+                        <Image src={localStorage.searched_img} size='medium'/>
+                    </Segment>
+                  </Grid.Column>
+                
             <Grid.Column width={11}>
-            {this.handleShowSegment()}
+             {this.handleShowSegment()}
             </Grid.Column>
           </Grid>
+         
         )}
     }
 }

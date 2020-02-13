@@ -35,7 +35,7 @@ class Calendar extends React.Component {
       
     return (
       <DatePicker
-        placeholderText="Click to select a date" 
+        placeholderText="Click here to select" 
         selected={this.state.startDate}
         onChange={this.handleChange}
         showTimeSelect

@@ -52,7 +52,7 @@ console.log(localStorage.searched_specialty)
                 <Segment className="text koek">Board Certified? {localStorage.searched_board_certified? "Yes" : "No"}</Segment>
                 <Segment className="text koek">Email: {localStorage.searched_email}</Segment>
                 <Segment className="text koek">Contact number: {localStorage.searched_phone_number}</Segment>
-                <Segment className="text koek">Please select a date: <Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="teal">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui blue button">Back</Button></Segment>
+                <Segment className="text koek">Please select a date: <Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="teal" floated="left">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui blue button">Back</Button></Segment>
                 <Segment className="text koek">Address: {localStorage.searched_address? localStorage.searched_address : "n/a"}</Segment>
            <Grid><Map address={localStorage.searched_address}/></Grid>
         </Segment.Group>
@@ -63,7 +63,7 @@ console.log(localStorage.searched_specialty)
                     <Segment className="text koek">Email: {localStorage.searched_email}</Segment>
                     <Segment className="text koek">Contact number: {localStorage.searched_phone_number}</Segment>
                     <Segment className="text koek">Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
-                    <Grid><Grid.Column><Segment>Please select a date:<Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="ui teal button">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui blue button">Back</Button></Segment></Grid.Column></Grid>
+                    <Grid><Grid.Column><Segment>Please select a date:<Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="ui teal button" floated="left">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui blue button">Back</Button></Segment></Grid.Column></Grid>
                     <Grid><Map address={localStorage.searched_address}/></Grid>
                  </Segment.Group>)
     }

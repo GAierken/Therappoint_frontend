@@ -7,7 +7,7 @@ import uuid from 'uuid'
 import Calendar from './Calendar'
 import SearcBar from './SearchBar'
 import MapContainer from './MapContainer'
-import { Segment, Button, List, Image, Grid, GridColumn } from 'semantic-ui-react';
+import { Segment, Button, List, Image, Grid, GridColumn, CardContent } from 'semantic-ui-react';
 import Swal from 'sweetalert2'
 
 
@@ -102,18 +102,19 @@ providersImg = () => {
 
 
 confirmAppo = () => {
-  
+ 
     if(this.props.user.specialty){
         
     this.props.createAppointment(this.props.date, this.props.pickedId, this.props.user.id)}
     else{
-        
+       
         this.props.createAppointment(this.props.date, this.props.user.id, this.props.pickedId)}    
        this.props.setPickedUserId(null)
 }
 
 pickProv = (evt) => {
    evt.target.style.opacity = 1
+   
     this.props.setPickedUserId(evt.target.dataset.id)
     
 }
@@ -229,7 +230,7 @@ handleNoPickedUser = () => {
 
 
 showCliImg = () => {
-    
+   
     
         if (this.props.user.clients) {
          const clients = [...this.props.user.clients]
@@ -249,13 +250,14 @@ showCliImg = () => {
  }
 
  showProImg = () => {
+    
     if (this.props.user.providers) {
         const providers = [...this.props.user.providers]
         
         const uniqueProviders = Array.from(new Set(providers.map(p => p.id))).map((id) => {
             return providers.find((p) => {
                 return p.id === id})})
-          
+         
     
             return uniqueProviders.map((provider) => {
             return <Image className="turkum rasimlar" size="tiny"  onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name} circular/>

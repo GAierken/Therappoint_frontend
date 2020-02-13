@@ -32,10 +32,12 @@ handleBackClick = () => {
 }
 
 handleScheduleClick = () => {
-    if (localStorage.searched_specialty) {
-        this.props.createAppointment(this.props.date, localStorage.searched_id, localStorage.id)
+    if (this.props.user.specialty) {
+        
+        this.props.createAppointment(this.props.date, localStorage.searched_id, this.props.user.id)
     } else {
-        this.props.createAppointment(this.props.date, localStorage.id, localStorage.searched_id)
+        
+        this.props.createAppointment(this.props.date, this.props.user.id, localStorage.searched_id)
     }
     this.setState({
         backClicked: !this.state.backClicked
@@ -99,7 +101,8 @@ handleShowSegment = () => {
 const mapStateToProps = (state) => {
     return {
         searchedUser: state.searchedUser,
-        date: state.date
+        date: state.date,
+        user: state.user
     }
 }
 

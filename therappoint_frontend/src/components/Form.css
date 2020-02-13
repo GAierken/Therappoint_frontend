@@ -3,3 +3,12 @@ form {
  font-size: xx-large;
  font-family: 'Lobster', cursive;;
 }
+
+
+
+button.ui.button.blue.mini.edit.back {
+    color:white;
+    float: left;
+    margin-top: 1rem;
+    
+}

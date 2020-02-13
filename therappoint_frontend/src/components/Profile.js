@@ -202,7 +202,7 @@ changeUpdatedState = () => {
 }
 
 handleNoAppo = () => {
-    if(this.props.provider_appointments || this.props.client_appointments){
+    if(this.props.user.provider_appointments || this.props.user.client_appointments){
         return(
             <Grid><GridColumn className="provider img text">Your Appointments:</GridColumn></Grid>
         )
@@ -215,19 +215,17 @@ handleNoAppo = () => {
 
 
 handleNoPickedUser = () => {
-    if(this.props.providers || this.props.clients){
-        return(
-            <Grid><GridColumn className="provider img text">Please click</GridColumn></Grid>
-        )
-    }else{
-        return(
-            <Grid><GridColumn className="provider img text">Please search</GridColumn></Grid>
-        )
-    }
+   if (this.props.user.providers || this.props.user.clients) {
+       return <Segment>Please click picture to choose:</Segment>
+   } else {
+       return <Segment>Please search for appointment</Segment>
+   }
+   
+   
 }
 
 showUsersImg = () => {
-    console.log(this.props.user.specialty)
+    
    if (this.props.user.specialty) {
        if (this.props.user.clients) {
         const clients = [...this.props.user.clients]
@@ -241,10 +239,11 @@ showUsersImg = () => {
             }
         )
        } else {
-           return <p>No client.</p>
+           return <Segment>Please search for your client!</Segment>
        }
        
    } else {
+    
        if (this.props.user.providers) {
         const providers = [...this.props.user.providers]
 
@@ -256,7 +255,7 @@ showUsersImg = () => {
     }
     )
        } else {
-           return <p>No provider.</p>
+           return <Segment>Please search for your provider!</Segment>
        }
         
    }
@@ -265,7 +264,7 @@ showUsersImg = () => {
 
 
     render(){
-        console.log('providers', this.props.user.providers, 'clients', this.props.user.clients)
+       
         return (
            <div className="top div">
            {/* search bar */}

@@ -43,7 +43,6 @@ handleScheduleClick = () => {
 }
 
 handleShowSegment = () => {
-console.log(localStorage.searched_specialty)
     if (localStorage.searched_specialty !== "null") {
         return(
             <Segment.Group raised>

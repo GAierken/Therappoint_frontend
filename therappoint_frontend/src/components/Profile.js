@@ -107,7 +107,7 @@ confirmAppo = () => {
         
     this.props.createAppointment(this.props.date, this.props.pickedId, this.props.user.id)}
     else{
-        console.log(this.props.user.specialty)
+        
         this.props.createAppointment(this.props.date, this.props.user.id, this.props.pickedId)}    
        this.props.setPickedUserId(null)
 }
@@ -215,20 +215,57 @@ handleNoAppo = () => {
 
 
 handleNoPickedUser = () => {
-    if(this.props.providers === [] || this.props.clients === []){
+    if(this.props.providers || this.props.clients){
         return(
-            <Grid><GridColumn className="provider img text">Please find your providers or clients</GridColumn></Grid>
+            <Grid><GridColumn className="provider img text">Please click</GridColumn></Grid>
         )
     }else{
         return(
-            <Grid><GridColumn className="provider img text">Please click on picture to choose</GridColumn></Grid>
+            <Grid><GridColumn className="provider img text">Please search</GridColumn></Grid>
         )
     }
 }
 
+showUsersImg = () => {
+    console.log(this.props.user.specialty)
+   if (this.props.user.specialty) {
+       if (this.props.user.clients) {
+        const clients = [...this.props.user.clients]
+        const uniqueClients = Array.from(new Set(clients.map(c => c.id))).map((id) => {
+            return clients.find((c) => {
+                return c.id === id})})
+    
+    
+            return uniqueClients.map((client) => {
+            return <Image className="turkum rasimlar" size="tiny"  onClick={this.pickProv} key={uuid()} data-id={client.id} src={client.img_url} alt={client.last_name} circular/>
+            }
+        )
+       } else {
+           return <p>No client.</p>
+       }
+       
+   } else {
+       if (this.props.user.providers) {
+        const providers = [...this.props.user.providers]
+
+        const uniqueProviders = Array.from(new Set(providers.map(p => p.id))).map((id) => {
+            return providers.find((p) => {
+                return p.id === id})})
+        return uniqueProviders.map((provider) => {
+        return <Image  className="turkum rasimlar"size="tiny" onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name } circular />
+    }
+    )
+       } else {
+           return <p>No provider.</p>
+       }
+        
+   }
+
+}
 
 
     render(){
+        console.log('providers', this.props.user.providers, 'clients', this.props.user.clients)
         return (
            <div className="top div">
            {/* search bar */}
@@ -293,8 +330,7 @@ handleNoPickedUser = () => {
                             <Grid.Column>
 
                             <div className="ui tiny circular images">
-                            {this.props.user.providers? this.providersImg():null}
-                            {this.props.user.clients? this.clientsImg():null}
+                           {this.showUsersImg()}
                             </div>
                             </Grid.Column>
                         </Grid>

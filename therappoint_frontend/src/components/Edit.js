@@ -47,7 +47,7 @@ handleChange = (evt) => {
     }
     
     render(){
-       
+     
         
             if (this.props.updated === true) {
                 return <Redirect to='/profile'></Redirect>

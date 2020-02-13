@@ -7,7 +7,7 @@ import uuid from 'uuid'
 import Calendar from './Calendar'
 import SearcBar from './SearchBar'
 import MapContainer from './MapContainer'
-import { Segment, Button, List, Image, Grid, GridColumn, CardContent } from 'semantic-ui-react';
+import { Segment, Button, List, Image, Grid, GridColumn} from 'semantic-ui-react';
 import Swal from 'sweetalert2'
 
 

@@ -99,7 +99,7 @@ export const authUser = (token, id) => {
         })
         .then(r => r.json())
         .then(data => {
-        
+            
             dispatch(setUser(data))
         })
     }

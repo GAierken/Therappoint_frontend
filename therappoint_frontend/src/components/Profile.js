@@ -52,7 +52,10 @@ appointmentLi = () => {
     return (
                 <List.Item key={uuid()}>
                  <List.Content key={uuid()}>
-                    <List.Header onClick={() => {
+                    <List.Header onMouseEnter={(evt) => {
+                        evt.target.style.color = "blue"
+                    }
+                    } onClick={() => {
                         Swal.fire({
                             icon: 'info',
                             text: `You have an appointment with ${provider.last_name} on ${appoint.appoint_date}.`,
@@ -65,6 +68,12 @@ appointmentLi = () => {
                         }  
                         )
                     }
+                    }
+                    onMouseLeave={
+                        (evt) => {
+                           evt.target.style.color = "black" 
+                        }
+                        
                     }>{appoint.appoint_date}</List.Header>
                      <List.Description>
                       <Button size="mini" className="teal" key={uuid()} data-id={appoint.id} onClick={this.handleSetReschedule}>Reschedule</Button> 
@@ -138,7 +147,17 @@ providerAppoLi = () => {
         let client = this.props.user.clients.find((c) => c.id === appoint.client_id)
         return (<List.Item key={uuid()}>
                     <List.Content key={uuid()}>
-                        <List.Header onClick={() => {
+                        <List.Header onMouseEnter={(evt) => {
+                        evt.target.style.color = "blue"
+                    }
+                    } onMouseLeave={
+                        (evt) => {
+                           evt.target.style.color = "black" 
+                        }
+                        
+                    }
+
+                        onClick={() => {
                         Swal.fire({
                             icon: 'info',
                             text: `You have an appointment with ${client.last_name} on ${appoint.appoint_date}.`,

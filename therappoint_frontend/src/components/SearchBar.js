@@ -121,9 +121,9 @@ render(){
         return <Redirect to="/portfolio"></Redirect>
     }else{
       return (this.props.user.specialty?
-        <Search size="massive" className="tepish derizisi centered" onSearchChange={this.handleSearchChange} placeholder='Find your client by name' results={this.state.results} onResultSelect={this.handleResultSelect}/>
+        <Search  size="massive" className="tepish derizisi centered" onSearchChange={this.handleSearchChange} placeholder='Find your client by name' results={this.state.results} onResultSelect={this.handleResultSelect}/>
         :
-        <Search size="massive" className="tepish derizisi centered" onSearchChange={this.handleSearchChange} placeholder='Find your provider by name' results={this.state.results} onResultSelect={this.handleResultSelect}/>
+        <Search  size="massive" className="tepish derizisi centered" onSearchChange={this.handleSearchChange} placeholder='Find your provider by name' results={this.state.results} onResultSelect={this.handleResultSelect}/>
        )
 
         

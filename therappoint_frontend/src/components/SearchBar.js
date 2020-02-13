@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {Search} from 'semantic-ui-react'
 import { setSearchedUser, setSearchedValue} from '../reducer/actions'
 import { Redirect } from 'react-router'
-
+import './SearchBar.css'
 
 class SearchBar extends React.Component {
 
@@ -121,9 +121,9 @@ render(){
         return <Redirect to="/portfolio"></Redirect>
     }else{
       return (this.props.user.specialty?
-        <Search onSearchChange={this.handleSearchChange} placeholder='Find your client by name' results={this.state.results} onResultSelect={this.handleResultSelect}/>
+        <Search size="massive" className="tepish derizisi centered" onSearchChange={this.handleSearchChange} placeholder='Find your client by name' results={this.state.results} onResultSelect={this.handleResultSelect}/>
         :
-        <Search onSearchChange={this.handleSearchChange} placeholder='Find your provider by name' results={this.state.results} onResultSelect={this.handleResultSelect}/>
+        <Search size="massive" className="tepish derizisi centered" onSearchChange={this.handleSearchChange} placeholder='Find your provider by name' results={this.state.results} onResultSelect={this.handleResultSelect}/>
        )
 
         

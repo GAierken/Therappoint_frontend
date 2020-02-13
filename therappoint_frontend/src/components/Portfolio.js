@@ -45,8 +45,17 @@ handleScheduleClick = () => {
 }
 
 handleShowSegment = () => {
-
-    if (localStorage.searched_specialty !== "null") {
+       
+    if (this.props.user.specialty) {
+        return ( <Segment.Group raised>
+            <Segment className="text koek">Name: {localStorage.searched_name}</Segment>
+            <Segment className="text koek">Email: {localStorage.searched_email}</Segment>
+            <Segment className="text koek">Contact number: {localStorage.searched_phone_number}</Segment>
+            <Segment className="text koek">Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
+            <Grid><Grid.Column><Segment>Please select a date:<Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="ui teal button" floated="left">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui blue button">Back</Button></Segment></Grid.Column></Grid>
+            <Grid><Map address={localStorage.searched_address}/></Grid>
+         </Segment.Group>)
+    } else {
         return(
             <Segment.Group raised>
                 <Segment className="text koek">Name: {localStorage.searched_name}</Segment>
@@ -59,15 +68,7 @@ handleShowSegment = () => {
            <Grid><Map address={localStorage.searched_address}/></Grid>
         </Segment.Group>
         )
-    } else {
-        return ( <Segment.Group raised>
-                    <Segment className="text koek">Name: {localStorage.searched_name}</Segment>
-                    <Segment className="text koek">Email: {localStorage.searched_email}</Segment>
-                    <Segment className="text koek">Contact number: {localStorage.searched_phone_number}</Segment>
-                    <Segment className="text koek">Address: {localStorage.searched_address? localStorage.searched_address:"n/a"}</Segment>
-                    <Grid><Grid.Column><Segment>Please select a date:<Calendar/><Button size="mini" onClick={this.handleScheduleClick} className="ui teal button" floated="left">Schedule</Button><Button size="mini" onClick={this.handleBackClick}className="ui blue button">Back</Button></Segment></Grid.Column></Grid>
-                    <Grid><Map address={localStorage.searched_address}/></Grid>
-                 </Segment.Group>)
+        
     }
 
 }

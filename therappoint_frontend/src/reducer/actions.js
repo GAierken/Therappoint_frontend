@@ -213,11 +213,18 @@ export const createAppointment = (date, userId01, userId02) => {
         })
         .then(r => r.json())
         .then(data=> {
+            if(data.errors) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: data.errors
+                  })
+            }else{
             Swal.fire({
                 icon: 'success',
                 title: `Appointment for ${data.appoint_date} is scheduled!`
               })
-              dispatch(authUser(localStorage.token, localStorage.id))
+              dispatch(authUser(localStorage.token, localStorage.id))}
         })
     }
 }

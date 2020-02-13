@@ -3,7 +3,7 @@ import './Form.css'
 import { connect } from 'react-redux';
 import {setToken} from '../reducer/actions'
 import {authUser} from '../reducer/actions'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { loginUser } from '../reducer/actions'
 
 
@@ -38,13 +38,16 @@ import { loginUser } from '../reducer/actions'
             return <Redirect to="/profile"></Redirect>
         } else {
             return(
-            <form onSubmit={this.handleSubmit} className="ui large form">
-                   <label>Username:</label>
-                   <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
-                   <label>Password:</label>
-                   <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
-                   <input type="submit" className="ui teal button"></input>
-            </form> )
+                <div>
+                    <form onSubmit={this.handleSubmit} className="ui large form">
+                        <label>Username:</label>
+                        <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
+                        <label>Password:</label>
+                        <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
+                        <input type="submit" className="ui teal button"></input>
+                    </form> 
+                    <Link to="/"><button className="ui button blue mini edit back">Back</button></Link>
+                </div>)
         } 
            
         

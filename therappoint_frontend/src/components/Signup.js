@@ -3,7 +3,7 @@ import './Form.css'
 import { connect } from 'react-redux';
 import { createUser } from '../reducer/actions'
 import {authUser} from '../reducer/actions'
-import { Redirect } from 'react-router';
+import { Redirect, Link } from 'react-router-dom';
 
 
 
@@ -53,6 +53,7 @@ class Signup extends React.Component{
         } else {
         return (
           localStorage.category === 'Provider'?
+          <div>
            <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>
                <input onChange={this.handleChange} type="text" name="username" value={this.state.username} placeholder="Please enter your username"></input>
@@ -72,7 +73,10 @@ class Signup extends React.Component{
                <input onChange={this.handleChange} type="text" name="password" value={this.state.password} placeholder="Please enter your password"></input>
                <input type="submit" className="ui teal button"></input>
            </form> 
+           <Link to="/"><button className="ui button blue mini edit back">Back</button></Link>
+          </div>
            :
+           <div>
            <form onSubmit={this.handleSubmit} className="ui large form">
                <label>Username:</label>
                <input onChange={this.handleChange} type="text" name="username" value={this.state.username} placeholder="Please enter your username"></input>
@@ -82,6 +86,8 @@ class Signup extends React.Component{
                <input onChange={this.handleChange} type="text" name="password" value={this.state.password} placeholder="Please enter your password"></input>
                <input type="submit" className="ui teal button"></input>
            </form> 
+           <Link to="/"><button className="ui button blue mini edit back">Back</button></Link>
+           </div>
 
         )
         }

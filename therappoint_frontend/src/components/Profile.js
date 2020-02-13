@@ -87,13 +87,12 @@ appointmentLi = () => {
 }
 
 providersImg = () => {
+    
     const providers = [...this.props.user.providers]
 
     const uniqueProviders = Array.from(new Set(providers.map(p => p.id))).map((id) => {
         return providers.find((p) => {
             return p.id === id})})
-
-    
     return uniqueProviders.map((provider) => {
     return <Image  className="turkum rasimlar"size="tiny" onClick={this.pickProv} key={uuid()} data-id={provider.id} src={provider.img_url} alt={provider.last_name } circular />
     }
@@ -183,6 +182,7 @@ providerAppoLi = () => {
 }
 
 clientsImg = () => {
+   
     const clients = [...this.props.user.clients]
     const uniqueClients = Array.from(new Set(clients.map(c => c.id))).map((id) => {
         return clients.find((c) => {

@@ -104,10 +104,12 @@ providersImg = () => {
 confirmAppo = () => {
   
     if(this.props.user.specialty){
+        
     this.props.createAppointment(this.props.date, this.props.pickedId, this.props.user.id)}
     else{
+        console.log(this.props.user.specialty)
         this.props.createAppointment(this.props.date, this.props.user.id, this.props.pickedId)}    
-   
+       this.props.setPickedUserId(null)
 }
 
 pickProv = (evt) => {
@@ -227,7 +229,6 @@ handleNoPickedUser = () => {
 
 
     render(){
-       
         return (
            <div className="top div">
            {/* search bar */}
@@ -310,7 +311,7 @@ handleNoPickedUser = () => {
                          {this.props.user.provider_appointments? this.appointmentLi(): null}
                          {this.props.user.client_appointments? this.providerAppoLi(): null}
                          </List>
-                         {this.state.rescheduleClicked? <Grid><Segment>Please select a date: <Calendar/><Button size="mini" className="teal" onClick={this.updateAppointdate}>confirm</Button><Button size="mini" color="blue" onClick={() => {
+                         {this.state.rescheduleClicked? <Grid><Segment>Please select a date: <Calendar/><Button size="mini" className="teal" onClick={this.updateAppointdate}>Confirm</Button><Button size="mini" color="blue" onClick={() => {
                              this.setState({
                                  rescheduleClicked: false
                              })

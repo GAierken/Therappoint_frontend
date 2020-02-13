@@ -198,7 +198,7 @@ export const setPickedUserId = (id) => {
 }
 
 export const createAppointment = (date, userId01, userId02) => {
-    console.log('client_id,', userId01, 'provider_id', userId02)
+    
     return (dispatch) => {
         fetch('http://localhost:3000/appointments', {
             method: 'POST',

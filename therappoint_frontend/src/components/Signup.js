@@ -30,7 +30,7 @@ class Signup extends React.Component{
    handleSubmit = (evt) => {
     evt.preventDefault()
     let user = this.state
-    console.log(this.state)
+    
     this.props.createUser(user)
     
 
@@ -70,7 +70,7 @@ class Signup extends React.Component{
                     <option value="educational therapy">educational therapy</option>
                 </select>
                <label>Password:</label>
-               <input onChange={this.handleChange} type="text" name="password" value={this.state.password} placeholder="Please enter your password"></input>
+               <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="Please enter your password"></input>
                <input type="submit" className="ui teal button"></input>
            </form> 
            <Link to="/"><button className="ui button blue mini edit back">Back</button></Link>
@@ -83,7 +83,7 @@ class Signup extends React.Component{
                <label>Email:</label>
                <input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="Please enter your Email"></input>
                <label>Password:</label>
-               <input onChange={this.handleChange} type="text" name="password" value={this.state.password} placeholder="Please enter your password"></input>
+               <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="Please enter your password"></input>
                <input type="submit" className="ui teal button"></input>
            </form> 
            <Link to="/"><button className="ui button blue mini edit back">Back</button></Link>

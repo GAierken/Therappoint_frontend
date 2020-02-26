@@ -76,7 +76,7 @@ handleChange = (evt) => {
                         <input onChange={this.handleChange} type="checkbox" name="board_certified"  checked={this.state.board_certified}/> <br/>
                     <input type="submit" className="ui teal button"/>
                     </form>
-                    <Link><button className="ui button blue mini edit back">Back</button></Link>
+                    <Link to="/profile"><button className="ui button blue mini edit back">Back</button></Link>
                 </div>
                 :
                 <div>

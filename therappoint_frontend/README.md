@@ -1,5 +1,5 @@
-# Therappoint 
-![alt text](https://github.com/GAierken/Therappoint_frontend/raw/master/therappoint_frontend/public/logo.ico "Logo Title Text 1")
+
+![alt text](https://github.com/GAierken/Therappoint_frontend/raw/master/therappoint_frontend/public/logo.ico "Therappoint")
 
 ## Introduction
 Therappoint is an appointment-scheduling app where clients or therapists are able to schedule, reschedule and delete appointments. 
@@ -16,4 +16,8 @@ Use npm to install and start
 npm install && npm start
 ```
 
-## 
+## Tech Used
+
+| React         | Redux      | Thunk     |
+| Google Map API| Geocode    | Datepicker|
+| Sweetalert    | Semantic UI| .dotenv   |

@@ -17,7 +17,8 @@ npm install && npm start
 ```
 
 ## Tech Used
-
+|               |            |           |
+| ------------- |:----------:| ---------:|
 | React         | Redux      | Thunk     |
 | Google Map API| Geocode    | Datepicker|
 | Sweetalert    | Semantic UI| .dotenv   |

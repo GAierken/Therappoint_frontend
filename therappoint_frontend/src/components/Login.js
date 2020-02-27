@@ -43,7 +43,7 @@ import { loginUser } from '../reducer/actions'
                         <label>Username:</label>
                         <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input>
                         <label>Password:</label>
-                        <input onChange={this.handleChange} type="text" name="password" value={this.state.password}></input>
+                        <input onChange={this.handleChange} type="password" name="password" value={this.state.password}></input>
                         <input type="submit" className="ui teal button"></input>
                     </form> 
                     <Link to="/"><button className="ui button blue mini edit back">Back</button></Link>

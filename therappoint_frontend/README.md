@@ -22,3 +22,6 @@ npm install && npm start
 | React         | Redux      | Thunk     |
 | Google Map API| Geocode    | Datepicker|
 | Sweetalert    | Semantic UI| .dotenv   |
+
+## Project Demo
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=QZEsGHZpaoo&feature=youtu.be)

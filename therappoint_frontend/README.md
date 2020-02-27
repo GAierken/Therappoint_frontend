@@ -24,4 +24,4 @@ npm install && npm start
 | Sweetalert    | Semantic UI| .dotenv   |
 
 ## Project Demo
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=QZEsGHZpaoo&feature=youtu.be)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/QZEsGHZpaoo&feature=youtu.be/0.jpg)](http://www.youtube.com/watch?v=QZEsGHZpaoo&feature=youtu.be)

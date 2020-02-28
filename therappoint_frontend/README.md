@@ -24,4 +24,4 @@ npm install && npm start
 | Sweetalert    | Semantic UI| .dotenv   |
 
 ## Project Demo
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/QZEsGHZpaoo&feature=youtu.be/0.jpg)](http://www.youtube.com/watch?v=QZEsGHZpaoo&feature=youtu.be)
+![alt text](https://github.com/GAierken/Therappoint_frontend/raw/master/therappoint_frontend/public/logo.ico "Therappoint")

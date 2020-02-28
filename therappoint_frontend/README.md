@@ -8,6 +8,7 @@ Therappoint is an appointment-scheduling app where clients or therapists are abl
 Before you continue, ensure you have met the following requirements:
 * You have installed the latest version of JavaScript
 * You have a basic understanding of React.js/ Redux library
+* You have installed Therappoint backend: https://github.com/GAierken/Therappoint_backend
 
 ## Installation 
 Use npm to install and start

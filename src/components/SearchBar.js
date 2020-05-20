@@ -30,59 +30,55 @@ class SearchBar extends React.Component {
 
 
 handleSource = () => {
-    
-    if(this.props.source){
-        // different user would have different search result
-        if(this.props.user.specialty){
-            const newSource = this.props.source.map(object => {
-                /////avoid user has no first name bug
-                if (object.first_name && object.last_name) {
-                    return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase() + " " + object.username.toLowerCase(), ...object}
-                } else {
-                    return { title: object.username.toLowerCase(), ...object}
-
-                }
-            }).filter((obj) => {
-                return !obj.specialty
-            }
-            )
+  
+    if(!this.props.user.specialty){
+        let newSource = this.props.providers.map((object) => {
+            if (object.first_name && object.last_name) {
+                                return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase() + " " + object.username.toLowerCase(), ...object}
+                            } else {
+                                return { title: object.username.toLowerCase(), ...object}
             
-            const results = newSource.filter((obj) => {
-                 return obj.title.indexOf(this.props.searchedValue) !== -1 
+                            }
                 
-            })
-
-            
-
-            this.setState({
-                ...this.state,
-                results: results
-            })}else{
-                const newSource = this.props.source.map(object => {
-                    /////avoid user has no first name bug
-                    if (object.first_name && object.last_name) {
-                        return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase() + " " + object.username.toLowerCase(), ...object}
-                    } else {
-                        return { title: object.username.toLowerCase(), ...object}
-    
-                    }
-                }).filter((obj) => {
-                    return obj.specialty
-                }
-                )
-
-                const results = newSource.filter((obj) => {
-                     return obj.title.includes(this.props.searchedValue)
-                    
-                })
-               
-                this.setState({
-                    ...this.state,
-                    results: results
-                })
-
-            }
         }
+        )
+
+        const results = newSource.filter((obj) => {
+                         return obj.title.indexOf(this.props.searchedValue) !== -1 
+                        
+                    })
+
+                    this.setState({
+                                    ...this.state,
+                                    results: results
+                                })
+
+       
+    }else{
+        let newSource = this.props.clients.map((object) => {
+            if (object.first_name && object.last_name) {
+                                return { title: object.first_name.toLowerCase() + " " + object.last_name.toLowerCase() + " " + object.username.toLowerCase(), ...object}
+                            } else {
+                                return { title: object.username.toLowerCase(), ...object}
+            
+                            }
+                
+        }
+        )
+
+        const results = newSource.filter((obj) => {
+                         return obj.title.indexOf(this.props.searchedValue) !== -1 
+                        
+                    })
+
+                    this.setState({
+                                    ...this.state,
+                                    results: results
+                                })
+
+       
+
+    }
     
 }
 
@@ -115,7 +111,6 @@ handleSource = () => {
 
 render(){
      
-  
      
     if(this.state.resultSelect === true) {
         return <Redirect to="/portfolio"></Redirect>
@@ -138,7 +133,9 @@ const mapStateToProps = (state) => {
     return {
         user: state.user,
         source: state.source,
-        searchedValue: state.searchedValue
+        searchedValue: state.searchedValue,
+        clients: state.clients,
+        providers: state.providers
     }
 }
 

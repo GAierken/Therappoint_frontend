@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import './Profile.css'
 import {Link} from 'react-router-dom'
-import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser, changeUpdateState, newSource } from '../reducer/actions'
+import { LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser, changeUpdateState } from '../reducer/actions'
 import uuid from 'uuid'
 import Calendar from './Calendar'
 import SearcBar from './SearchBar'
@@ -19,9 +19,7 @@ class Profile extends React.Component {
      rescheduleAppoinId: ''
  }
 
- componentDidMount() {
-   this.props.newSource()
- }
+ 
 
 handleLogOutClick = () => {
     
@@ -382,8 +380,9 @@ const mapStateToProps = (state) => {
        date: state.date,
        pickedId: state.pickedId,
        updated: state.updated,
-       source: state.source
+       source: state.source,
+     
     }
 }
 
-export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser, changeUpdateState, newSource})(Profile)
+export default connect(mapStateToProps, {LogOut, deleteUser, setPickedUserId, createAppointment, deleteAppointment, updateAppointment, authUser, changeUpdateState})(Profile)

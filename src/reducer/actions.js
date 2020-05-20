@@ -99,7 +99,7 @@ export const authUser = (token, id) => {
         })
         .then(r => r.json())
         .then(data => {
-            console.log(data)
+            
             dispatch(setUser(data))
         })
     }
@@ -279,13 +279,40 @@ export const setSource = (source) => {
 }
 
 
-export const newSource = () => {
+export const getClients = () => {
     return (dispatch) => {
         fetch('http://localhost:3000/users')
         .then(r => r.json())
         .then(data => 
-            dispatch(setSource(data)))
+         
+            dispatch(setClients(data.filter((obj) => {
+                return !obj.specialty
+            }
+            )))
+               
+            )
+           
     }
+}
+
+export const getProviders = () => {
+
+    return (dispatch) => {
+        fetch('http://localhost:3000/users')
+        .then(r => r.json())
+        .then(data => 
+         
+            
+            dispatch(setProviders(data.filter((obj) => {
+                return obj.specialty
+            }
+            )))
+           
+               
+            )
+           
+    }
+
 }
 
 
@@ -302,3 +329,19 @@ export const setSearchedValue = (value) => {
         value: value
     }
 }
+
+export const setClients = (source) => {
+    return {
+        type: 'SET_CLIENTS',
+        clients: source
+    }
+}
+
+export const setProviders = (source) => {
+    return {
+        type: 'SET_PROVIDERS',
+        providers: source
+    }
+}
+
+

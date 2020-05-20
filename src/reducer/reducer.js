@@ -68,6 +68,18 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 searchedValue: action.value
             }
+        
+        case 'SET_CLIENTS':
+            return {
+                ...state,
+                clients: action.clients
+            }
+
+        case 'SET_PROVIDERS':
+            return {
+                ...state,
+                providers: action.providers
+            }
         default:
            return state
     }

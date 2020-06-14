@@ -4,6 +4,9 @@
 ## Introduction
 Therappoint is an appointment-scheduling app where clients or therapists are able to schedule, reschedule and delete appointments. 
 
+## Heroku backend: 
+https://peaceful-atoll-37638.herokuapp.com/users
+
 ## Prerequisites
 Before you continue, ensure you have met the following requirements:
 * You have installed the latest version of JavaScript

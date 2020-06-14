@@ -27,7 +27,7 @@ export const setUser = (user) => {
 export const createUser = (user) => {
     
     return (dispatch) => {
-        fetch('http://localhost:3000/users', {
+        fetch('https://peaceful-atoll-37638.herokuapp.com/users', {
             method: 'POST',
             headers: {
                 'content-type': "application/json",
@@ -56,7 +56,7 @@ export const createUser = (user) => {
 
 export const loginUser = (user) => {
     return (dispatch) => {
-        fetch("http://localhost:3000/login", {
+        fetch("https://peaceful-atoll-37638.herokuapp.com/login", {
            method: 'POST',
            headers: {
                "content-type": "application/json",
@@ -92,14 +92,13 @@ export const loginUser = (user) => {
 export const authUser = (token, id) => {
     
     return (dispatch) => {
-        fetch(`http://localhost:3000/users/${id}`,{
+        fetch(`https://peaceful-atoll-37638.herokuapp.com/users/${id}`,{
             headers: {
                 "Authorization": token
             }
         })
         .then(r => r.json())
         .then(data => {
-            console.log(data)
             dispatch(setUser(data))
         })
     }
@@ -129,7 +128,7 @@ export const changeUpdateState = () => {
 export const updateUser = (user) => {
   
     return (dispatch) => {
-        fetch(`http://localhost:3000/users/${user.id}`, {
+        fetch(`https://peaceful-atoll-37638.herokuapp.com/users/${user.id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
@@ -161,7 +160,7 @@ export const updateUser = (user) => {
 
 export const deleteUser = (user) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/users/${user.id}`,{
+        fetch(`https://peaceful-atoll-37638.herokuapp.com/users/${user.id}`,{
             method: 'DELETE'
         })
         .then(r => r.json())
@@ -200,7 +199,7 @@ export const setPickedUserId = (id) => {
 export const createAppointment = (date, userId01, userId02) => {
     
     return (dispatch) => {
-        fetch('http://localhost:3000/appointments', {
+        fetch('https://peaceful-atoll-37638.herokuapp.com/appointments', {
             method: 'POST',
             headers: {
                 "content-type": "application/json",
@@ -233,7 +232,7 @@ export const createAppointment = (date, userId01, userId02) => {
 
 export const deleteAppointment = (id) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/appointments/${id}`, {
+        fetch(`https://peaceful-atoll-37638.herokuapp.com/appointments/${id}`, {
             method: "DELETE"
         })
         .then(r => r.json())
@@ -249,7 +248,7 @@ export const deleteAppointment = (id) => {
 
 export const updateAppointment = (id, date) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/appointments/${id}`, {
+        fetch(`https://peaceful-atoll-37638.herokuapp.com/appointments/${id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
@@ -281,7 +280,7 @@ export const setSource = (source) => {
 
 export const newSource = () => {
     return (dispatch) => {
-        fetch('http://localhost:3000/users')
+        fetch('https://peaceful-atoll-37638.herokuapp.com/users')
         .then(r => r.json())
         .then(data => 
             dispatch(setSource(data)))

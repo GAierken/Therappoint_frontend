@@ -3,6 +3,7 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import Geocode from "react-geocode";
 
 Geocode.setApiKey(process.env.REACT_APP_MAP_API_KEY)
+console.log(process.env.REACT_APP_MAP_API_KEY)
 
 class MapContainer extends React.Component {
 

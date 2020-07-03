@@ -14,7 +14,7 @@ render(){
            
          </div>
          <div>
-         <Link to="/"><Button className="ui mini button blue kaytish">Back</Button></Link>
+         <Link to="/"><Button Fluid className="ui mini button blue kaytish">Back</Button></Link>
          </div>
          </div>
     )

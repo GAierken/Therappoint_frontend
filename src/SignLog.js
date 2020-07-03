@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import { Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 class SignLog extends React.Component {
 
@@ -14,7 +14,7 @@ render(){
            
          </div>
          <div>
-         <Link to="/"><button style={{'text-align':'center'}}className="ui mini button blue kaytish">Back</button></Link>
+         <Link to="/"><Button className="ui mini button blue kaytish">Back</Button></Link>
          </div>
          </div>
     )

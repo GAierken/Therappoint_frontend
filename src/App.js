@@ -15,11 +15,13 @@ import './App.css';
 import Swal from 'sweetalert2'
 
 
+// let placesAPIScript = document.querySelector('script')
 
-
+// placesAPIScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAP_API_KEY}&libraries=places`
 
 class App extends React.Component {
-  
+
+
   componentDidMount(){
     if (localStorage.token) {
       this.props.authUser(localStorage.token, localStorage.id)

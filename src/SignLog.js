@@ -14,7 +14,7 @@ render(){
            
          </div>
          <div>
-         <Link to="/"><button className="ui mini button blue kaytish">Back</button></Link>
+         <Link to="/"><button style={{'text-align':'center'}}className="ui mini button blue kaytish">Back</button></Link>
          </div>
          </div>
     )
